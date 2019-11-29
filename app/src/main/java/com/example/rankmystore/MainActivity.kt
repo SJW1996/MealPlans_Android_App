@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val profileBoutton = findViewById<View>(R.id.button2)
+        profileBoutton.setOnClickListener { goToAnActivity() }
+
         /*
         var input_user_name = findViewById<View>(R.id.input_user_name) as EditText
         var input_password = findViewById<View>(R.id.input_password) as EditText
@@ -36,7 +40,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
+    fun goToAnActivity( ) {
+        val intent = Intent(this, Profile::class.java)
+        startActivity(intent)
+    }
 
 
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_gravity="fill"
+        android:id="@+id/ll_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@color/cardview_dark_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="30dp">
+        <!--        android:layout_gravity="center_horizontal"-->
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Profile"
+            android:textColor="#fff"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:padding="50dp"
+            android:src="@drawable/ic_action_profile"
+            />
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:padding="10dp"
+            android:text="xxx"
+            android:textColor="#fff"
+            android:textSize="15dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:padding="10dp"
+            android:text="History Reviews"
+            android:textColor="#fff"
+            android:textSize="15dp" />
+
+<!--        <HorizontalScrollView-->
+<!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--            android:id="@+id/horizontalScroll"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:fillViewport="true"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="100dp"-->
+<!--            />-->
+
+        <LinearLayout
+            android:id="@+id/horizontalScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="100dp" />
+
+    </LinearLayout>
+</ScrollView>
