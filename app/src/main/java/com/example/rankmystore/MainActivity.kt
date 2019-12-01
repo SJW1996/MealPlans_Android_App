@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity() {
         profileBoutton.setOnClickListener { goToAnActivity() }
         val login_button = findViewById<View>(R.id.button2)
         login_button.setOnClickListener({goToLoginActivity()})
+
+        val storeButton = findViewById<View>(R.id.store_button)
+        storeButton.setOnClickListener({goToStoreActivity()})
+
         //ss
         /*
         var input_user_name = findViewById<View>(R.id.input_user_name) as EditText
@@ -52,6 +56,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(login_intent)
     }
 
+    fun goToStoreActivity( ) {
+        val store_intent = Intent(this, Stores::class.java)
+        startActivity(store_intent)
+    }
 
 
 }

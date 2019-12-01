@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="fill"
+
+        android:background="@color/cardview_dark_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Store name:"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
+            app:layout_constraintStart_toStartOf="@+id/horizontalScroll" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="30dp"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!--        <HorizontalScrollView-->
+        <!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--            android:id="@+id/horizontalScroll"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:fillViewport="true"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:padding="100dp"-->
+        <!--            />-->
+
+        <LinearLayout
+            android:id="@+id/horizontalScroll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="104dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="vertical"
+            android:padding="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView3">
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="8dp"
+            android:text="images:"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/horizontalScroll"
+            app:layout_constraintStart_toStartOf="@+id/textView4" />
+
+
+        <Button
+            android:id="@+id/rating_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="Submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="21dp"
+            android:layout_marginBottom="13dp"
+            android:stepSize="0.5"
+            app:layout_constraintBottom_toTopOf="@+id/rating_submit"
+            app:layout_constraintEnd_toEndOf="@+id/horizontalScroll" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
