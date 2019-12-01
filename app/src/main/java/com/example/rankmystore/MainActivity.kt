@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         val profileBoutton = findViewById<View>(R.id.button2)
         profileBoutton.setOnClickListener { goToAnActivity() }
-
+        //ss
         /*
         var input_user_name = findViewById<View>(R.id.input_user_name) as EditText
         var input_password = findViewById<View>(R.id.input_password) as EditText
