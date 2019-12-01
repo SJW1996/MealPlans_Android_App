@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Rank my Store</string>
+    <string name="rating_string">Scores:%1.1f</string>
 </resources>

@@ -38,27 +38,11 @@
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
         android:layout_marginEnd="124dp"
         android:layout_marginBottom="40dp"
         android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/Address"
-        app:layout_constraintStart_toStartOf="@+id/Comments"
-        app:layout_constraintTop_toBottomOf="@+id/Comments" />
-
-    <EditText
-        android:id="@+id/Comments"
-        android:layout_width="360dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="21dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Comments"
-        app:layout_constraintBottom_toTopOf="@+id/submitButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintEnd_toEndOf="@+id/Address" />
 
     <TextView
         android:id="@+id/textView3"
@@ -114,11 +98,30 @@
         android:layout_width="181dp"
         android:layout_height="0dp"
         android:layout_marginEnd="73dp"
-        android:layout_marginBottom="95dp"
         android:text="Add Store Photos"
-        app:layout_constraintBottom_toTopOf="@+id/Comments"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addStorePhotosButton" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="Scores:"
+        app:layout_constraintEnd_toEndOf="@+id/ratingBar"
+        app:layout_constraintStart_toStartOf="@+id/ratingBar"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:stepSize="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
