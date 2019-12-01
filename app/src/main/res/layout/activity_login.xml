@@ -22,10 +22,10 @@
             android:textSize="25dp" />
 
         <EditText
-            android:id="@+id/input_user_name"
+            android:id="@+id/input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="User Name"
+            android:hint="Email"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textColorHint="#000000" />

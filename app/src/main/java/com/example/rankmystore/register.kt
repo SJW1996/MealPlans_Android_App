@@ -16,8 +16,15 @@ class register : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register)
+
+        
+
+
+        //Go back to the login page
         var login_button = findViewById<View>(R.id.tvlogin) as Button
         login_button.setOnClickListener({goto_Loginactivity()})
+
+
 
 
 
