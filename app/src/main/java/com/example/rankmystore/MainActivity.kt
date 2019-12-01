@@ -16,8 +16,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val profileBoutton = findViewById<View>(R.id.button2)
+        val profileBoutton = findViewById<View>(R.id.button3)
         profileBoutton.setOnClickListener { goToAnActivity() }
+        val login_button = findViewById<View>(R.id.button2)
+        login_button.setOnClickListener({goToLoginActivity()})
         //ss
         /*
         var input_user_name = findViewById<View>(R.id.input_user_name) as EditText
@@ -45,6 +47,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun goToLoginActivity( ) {
+        val login_intent = Intent(this, login::class.java)
+        startActivity(login_intent)
+    }
 
 
 

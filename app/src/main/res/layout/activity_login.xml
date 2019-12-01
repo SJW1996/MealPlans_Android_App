@@ -52,6 +52,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Reset"
+                android:background="#000000"
+                android:textColor="#ffffff"
+                android:layout_marginRight="10dp"
                 android:textAllCaps="false" />
 
             <Button
@@ -59,6 +62,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Submit"
+                android:background="#000000"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/btn_sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign up"
+                android:layout_marginLeft="10dp"
+                android:background="#000000"
+                android:textColor="#ffffff"
                 android:textAllCaps="false" />
         </LinearLayout>
     </LinearLayout>

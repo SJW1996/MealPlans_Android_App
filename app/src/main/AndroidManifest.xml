@@ -10,8 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Profile"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".Review">
+        <activity android:name=".Review"></activity>
+        <activity android:name=".login"></activity>
+        <activity android:name=".register"></activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
