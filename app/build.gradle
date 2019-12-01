@@ -32,12 +32,28 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.firebase:firebase-auth:16.0.5'
-    implementation 'com.google.firebase:firebase-database:16.0.4'
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-database:19.2.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.android.support:design:28.0.0'
-    /*Adding coresponding dependencies for the firebase storage */
-    //implementation 'com.google.gms.google-services'
-    //implementation 'com.google.firebase:firebase-auth:11.0.4'
+
+    // add the Firebase SDK for Google Analytics
+    implementation 'com.google.firebase:firebase-analytics:17.2.1'
+    implementation 'com.google.firebase:firebase-database:19.2.0'
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-firestore:21.3.0'
+
+    // add SDKs for any other desired Firebase products
 }
+
+/*
+  // Add the Firebase SDK for Google Analytics
+  implementation 'com.google.firebase:firebase-analytics:17.2.1'
+
+  // Add the SDKs for any other Firebase products you want to use in your app
+  // For example, to use Firebase Authentication and Cloud Firestore
+  implementation 'com.google.firebase:firebase-auth:19.2.0'
+  implementation 'com.google.firebase:firebase-firestore:21.3.0'
+ */
