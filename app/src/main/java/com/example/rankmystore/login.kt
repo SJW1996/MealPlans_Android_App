@@ -20,6 +20,7 @@ class login : AppCompatActivity(){
         var input_password = findViewById<View>(R.id.input_password) as EditText
         var btn_reset = findViewById<View>(R.id.btn_reset) as Button
         var btn_submit = findViewById<View>(R.id.btn_submit) as Button
+
         var sign_up_button = findViewById<View>(R.id.btn_sign_up) as Button
         //var login_button =
 
