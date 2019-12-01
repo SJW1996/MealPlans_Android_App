@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.view.Gravity
+import android.widget.RatingBar
+import android.widget.RatingBar.OnRatingBarChangeListener
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener
@@ -58,14 +60,24 @@ class Stores : AppCompatActivity(){
         linearLayout1?.addView(horizontalScrollView)
 
 
-        val ratingBar = findViewById<RatingBar>(R.id.ratingBar)
-        if (ratingBar != null) {
-            val button = findViewById<Button>(R.id.rating_submit)
-            button?.setOnClickListener {
-                val msg = ratingBar.rating.toString()
-                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+
+        val tv = findViewById<TextView>(R.id.textView7)
+
+        findViewById<RatingBar>(R.id.ratingBar)?.onRatingBarChangeListener =
+            OnRatingBarChangeListener{ _, rating, _ ->
+                // Called when the user swipes the RatingBar
+                tv.text = getString(R.string.rating_string, rating)
             }
-        }
+
+//
+//        val ratingBar = findViewById<RatingBar>(R.id.ratingBar)
+//        if (ratingBar != null) {
+//            val button = findViewById<Button>(R.id.rating_submit)
+//            button.setOnClickListener{
+//                val msg = ratingBar.rating.toString()
+//                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+//            }
+//        }
 
     }
 
