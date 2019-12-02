@@ -106,10 +106,18 @@ class Profile : AppCompatActivity() {
             startActivity(intent)
         }
 
+        var add_Photo_Button = findViewById<View>(R.id.addProfileImage)
+        add_Photo_Button.setOnClickListener(){goToAddProfileImage()}
+
     }
     private fun sign_out_user(){
         mAuth!!.signOut();
         val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun goToAddProfileImage(){
+        var intent = Intent(this,AddProfileImage::class.java)
         startActivity(intent)
     }
 

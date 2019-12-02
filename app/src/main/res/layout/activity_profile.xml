@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -32,6 +33,16 @@
             android:src="@drawable/ic_action_profile"
             />
 
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addProfileImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:backgroundTint="@color/design_default_color_primary_dark"
+            app:rippleColor="#000F0F0F"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
         <TextView
             android:id="@+id/profile_name"
             android:layout_width="wrap_content"
@@ -42,6 +53,7 @@
             android:text="xxxxx"
             android:textColor="#fff"
             android:textSize="25dp" />
+
 
 
         <TextView
