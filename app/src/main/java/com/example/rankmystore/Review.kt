@@ -3,6 +3,7 @@ package com.example.rankmystore
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.widget.EditText;
 import android.view.LayoutInflater;
@@ -11,16 +12,25 @@ import android.view.View.OnClickListener
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_review.*
 
 class Review  : AppCompatActivity(){
+    companion object {
+        const val TAG = "MapLocation"
+    }
 
     private var mAuth: FirebaseAuth? = null
     lateinit var mDatabase : DatabaseReference
+    private  lateinit var addrText: EditText
+    private  lateinit var storename: EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_review)
+        addrText = findViewById(R.id.Address)
+        storename = findViewById(R.id.storeName)
+
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
 
@@ -38,6 +48,10 @@ class Review  : AppCompatActivity(){
 
         done_Button.setOnClickListener(){finishAddPhotos()}
         add_Photo_Button.setOnClickListener(){goToGallery()}
+
+        var show_map_button = findViewById<View>(R.id.button4)
+        show_map_button.setOnClickListener{processClick()}
+
 
 
     }
@@ -78,5 +92,48 @@ class Review  : AppCompatActivity(){
         var intent = Intent(this,Gallery::class.java)
         startActivity(intent)
 
+    }
+    private fun processClick(){
+        try {
+            var address = addrText.text.toString()
+            address = address.replace(' ', '+')
+
+            val geoIntent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=$address"))
+            if (packageManager.resolveActivity(geoIntent,0) != null){
+                startActivity(geoIntent)
+            }
+        }catch (e: Exception){
+            Log.e(TAG,e.toString())
+        }
+    }
+    override fun onStart() {
+        super.onStart()
+        Log.i(TAG, "The activity is visible and about to be started.")
+    }
+
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.i(TAG, "The activity is visible and about to be restarted.")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i(TAG, "The activity is visible and has focus (it is now \"resumed\")")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i(TAG,"Another activity is taking focus (this activity is about to be \"paused\")")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i(TAG, "The activity is no longer visible (it is now \"stopped\")")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i(TAG, "The activity is about to be destroyed.")
     }
 }
