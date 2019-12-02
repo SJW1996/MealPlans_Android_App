@@ -13,7 +13,7 @@
         android:background="@color/cardview_dark_background"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="30dp">
+        android:padding="40dp">
         <!--        android:layout_gravity="center_horizontal"-->
 
 
@@ -23,7 +23,7 @@
             android:layout_marginTop="40dp"
             android:text="Profile"
             android:textColor="#fff"
-            android:textSize="20dp" />
+            android:textSize="35dp" />
 
         <ImageView
             android:id="@+id/profile_image"
@@ -43,7 +43,7 @@
             android:padding="10dp"
             android:text="xxxxx"
             android:textColor="#fff"
-            android:textSize="15dp" />
+            android:textSize="25dp" />
 
 
         <TextView
