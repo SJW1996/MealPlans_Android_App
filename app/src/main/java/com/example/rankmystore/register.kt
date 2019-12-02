@@ -62,13 +62,11 @@ class register : AppCompatActivity(){
                     //adding review
                     //val other_dr = FirebaseDatabase.getInstance().getReference("authors").child(uid).child(id)
                     //db.child(uid).child("username").setValue(email)
-                    mDatabase.child(uid).setValue(email)
+                    mDatabase.child(uid).child("username").setValue(email)
+                    mDatabase.child(uid).child("password").setValue(password)
                     startActivity(Intent(this,login::class.java))
                     Toast.makeText(this, "Successfully registered", Toast.LENGTH_LONG).show()
-
                 }else{
-                    val e = task.exception as FirebaseNetworkException
-                    Log.e("Register activity", "Failed Registration", e)
                     Toast.makeText(this, "Error registering, please try again", Toast.LENGTH_LONG).show()
                 }
             })
@@ -81,8 +79,6 @@ class register : AppCompatActivity(){
         val user = users(email, password)
         mDatabase.child("users").child(userId).setValue(user)
     }
-
-
      */
     fun goto_Loginactivity(){
         val intent = Intent(this, login::class.java)
