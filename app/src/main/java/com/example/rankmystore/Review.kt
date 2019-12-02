@@ -3,6 +3,7 @@ package com.example.rankmystore
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.util.Log
 import android.widget.EditText;
 import android.view.LayoutInflater;
 import android.view.View
@@ -25,8 +26,7 @@ class Review  : AppCompatActivity(){
 
         var add_Photo_Button = findViewById<View>(R.id.addStorePhotosButton)
         var done_Button = findViewById<View>(R.id.submitButton)
-        var storeName = findViewById<View>(R.id.storeName)
-        var address = findViewById<View>(R.id.Address)
+
 
         // set up rating bar
         val tv = findViewById<TextView>(R.id.textView7)
@@ -57,7 +57,16 @@ class Review  : AppCompatActivity(){
             val uid = user!!.uid
 
             var store = store_object(storeName,address,ratingScore)
-            mDatabase.child(uid).setValue(store)
+//            Log.i("Review", "create store object")
+            mDatabase.child(uid!!).setValue(store)
+                .addOnFailureListener { e ->
+                    Toast.makeText(
+                        this@Review,
+                        e.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+//            Log.i("Review", " go through add into database")
         }
 
 
