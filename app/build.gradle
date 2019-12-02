@@ -46,6 +46,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:21.3.0'
 
     // add SDKs for any other desired Firebase products
+
+    // For adding pictures
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.google.firebase:firebase-storage:19.1.0'
 }
 
 /*

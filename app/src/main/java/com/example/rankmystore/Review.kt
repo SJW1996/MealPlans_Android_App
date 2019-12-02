@@ -17,16 +17,16 @@ class Review  : AppCompatActivity(){
         var storeName = findViewById<View>(R.id.storeName)
         var address = findViewById<View>(R.id.Address)
 
-
-        done_Button.setOnClickListener(){finishAddPhotos()}
-
+        // set up rating bar
         val tv = findViewById<TextView>(R.id.textView7)
-
         findViewById<RatingBar>(R.id.ratingBar)?.onRatingBarChangeListener =
             RatingBar.OnRatingBarChangeListener { _, rating, _ ->
                 // Called when the user swipes the RatingBar
                 tv.text = getString(R.string.rating_string, rating)
             }
+
+        done_Button.setOnClickListener(){finishAddPhotos()}
+        add_Photo_Button.setOnClickListener(){goToGallery()}
 
 
     }
@@ -34,5 +34,11 @@ class Review  : AppCompatActivity(){
     fun finishAddPhotos(){
         var intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
+    }
+
+    fun goToGallery(){
+        var intent = Intent(this,Gallery::class.java)
+        startActivity(intent)
+
     }
 }
