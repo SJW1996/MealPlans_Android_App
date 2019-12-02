@@ -60,6 +60,8 @@ class Stores : AppCompatActivity(){
         linearLayout1?.addView(horizontalScrollView)
 
 
+        val profileBoutton = findViewById<View>(R.id.add_review)
+        profileBoutton.setOnClickListener { goToReviewActivity() }
 
         val tv = findViewById<TextView>(R.id.textView7)
 
@@ -81,6 +83,10 @@ class Stores : AppCompatActivity(){
 
     }
 
+    fun goToReviewActivity( ) {
+        val intent = Intent(this, Review::class.java)
+        startActivity(intent)
+    }
 
 
 

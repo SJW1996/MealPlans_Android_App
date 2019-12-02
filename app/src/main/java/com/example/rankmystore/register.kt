@@ -76,6 +76,7 @@ class register : AppCompatActivity(){
                     startActivity(Intent(this,login::class.java))
                     Toast.makeText(this, "Successfully registered", Toast.LENGTH_LONG).show()
                 }else{
+
                     Toast.makeText(this, "Error registering, please try again", Toast.LENGTH_LONG).show()
                 }
             })

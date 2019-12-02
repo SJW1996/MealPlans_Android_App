@@ -10,6 +10,7 @@ import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -35,6 +36,8 @@ class Gallery  : AppCompatActivity() {
 
     private var mUploadTask: StorageTask<*>? = null
 
+    var user = FirebaseAuth.getInstance().currentUser
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +51,7 @@ class Gallery  : AppCompatActivity() {
         mProgressBar = findViewById(R.id.progress_bar)
 
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads")
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads")
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference()
 
         mButtonChooseImage?.setOnClickListener(View.OnClickListener { openFileChooser() })
 
@@ -107,9 +110,13 @@ class Gallery  : AppCompatActivity() {
                         .show()
                     var name = mEditTextFileName!!.text.toString().trim { it <= ' ' }
                     var url =  taskSnapshot.getStorage().getDownloadUrl().toString()
-                    val upload = Upload( name, url)
-                    val uploadId = mDatabaseRef!!.push().key
-                    mDatabaseRef!!.child(uploadId!!).setValue(upload)
+
+                    var uid = user!!.uid
+                    mDatabaseRef?.child(uid)?.child("Profile_image")?.setValue(url)
+
+//                    val upload = Upload( name, url)
+//                    val uploadId = mDatabaseRef!!.push().key
+//                    mDatabaseRef!!.child(uploadId!!).setValue(upload)
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(
