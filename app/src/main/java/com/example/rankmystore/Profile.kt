@@ -14,12 +14,18 @@ import androidx.recyclerview.widget.SnapHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import io.opencensus.metrics.export.Summary
+import com.google.android.gms.tasks.Task
+import androidx.annotation.NonNull
+import com.google.android.gms.tasks.OnCompleteListener
+
+
 
 
 class Profile : AppCompatActivity() {
 
     lateinit var mDatabase : DatabaseReference
     var user = FirebaseAuth.getInstance().currentUser
+    private var mAuth: FirebaseAuth? = null
 
 
     @SuppressLint("WrongViewCast")
@@ -27,6 +33,7 @@ class Profile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+        mAuth = FirebaseAuth.getInstance()
         val horizontalScrollView = HorizontalScrollView(this)
         val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 
@@ -70,25 +77,34 @@ class Profile : AppCompatActivity() {
 
         mDatabase = FirebaseDatabase.getInstance().getReference()
         val name_text = findViewById<View>(R.id.profile_name) as TextView
-        var uid = user!!.uid
-        mDatabase.child(uid).child("username").addValueEventListener(object :ValueEventListener{
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (user != null){
+            var uid = user!!.uid
+            mDatabase.child(uid).child("username").addValueEventListener(object :ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    name_text.text =  "Welcome " + snapshot.value.toString()
+                }
+            })
+
+            var edit_profile = findViewById<View>(R.id.button_editprofile) as Button
+            edit_profile.setOnClickListener{
+                val intent = Intent(this, Edit_Profile::class.java)
+                startActivity(intent)
             }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                name_text.text =  "Welcome " + snapshot.value.toString()
-            }
-        })
-
-        var edit_profile = findViewById<View>(R.id.button_editprofile) as Button
-        edit_profile.setOnClickListener{
-            val intent = Intent(this, Edit_Profile::class.java)
-            startActivity(intent)
+            var signout_account = findViewById<View>(R.id.button_signout)
+            signout_account.setOnClickListener{sign_out_user()}
         }
 
     }
-
+    private fun sign_out_user(){
+        mAuth!!.signOut();
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
 
 }
 

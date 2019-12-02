@@ -61,7 +61,8 @@ class Edit_Profile  : AppCompatActivity() {
             mDatabase.child(uid).child("username").setValue(new_username)
             Toast.makeText(this, "Update Successfully", Toast.LENGTH_LONG).show()
 
-
         }
+        val intent = Intent(this, Profile::class.java)
+        startActivity(intent)
     }
 }

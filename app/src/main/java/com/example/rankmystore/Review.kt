@@ -61,7 +61,6 @@ class Review  : AppCompatActivity(){
         }
 
 
-
         var intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
     }
