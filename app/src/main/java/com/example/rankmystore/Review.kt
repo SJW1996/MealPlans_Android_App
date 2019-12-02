@@ -51,14 +51,14 @@ class Review  : AppCompatActivity(){
         var address = addressView.text.toString()
         var ratingScore = ratingBar.rating
 
-        if(!storeName.isEmpty() && !address.isEmpty() && ratingScore != null ){
+        if(!storeName.isEmpty() && !address.isEmpty()){
 
             val user = mAuth!!.currentUser
             val uid = user!!.uid
 
             var store = store_object(storeName,address,ratingScore)
 //            Log.i("Review", "create store object")
-            mDatabase.child(uid!!).setValue(store)
+            mDatabase.child(uid).setValue(store)
                 .addOnFailureListener { e ->
                     Toast.makeText(
                         this@Review,

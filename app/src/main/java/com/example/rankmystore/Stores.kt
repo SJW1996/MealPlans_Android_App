@@ -60,8 +60,8 @@ class Stores : AppCompatActivity(){
         linearLayout1?.addView(horizontalScrollView)
 
 
-        val profileBoutton = findViewById<View>(R.id.add_review)
-        profileBoutton.setOnClickListener { goToReviewActivity() }
+        //val profileBoutton = findViewById<View>(R.id.add_review)
+        //profileBoutton.setOnClickListener { goToReviewActivity() }
 
         val tv = findViewById<TextView>(R.id.textView7)
 
@@ -80,6 +80,13 @@ class Stores : AppCompatActivity(){
 //                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 //            }
 //        }
+
+        var go_back_to_main = findViewById<View>(R.id.button_goback) as Button
+        go_back_to_main.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 

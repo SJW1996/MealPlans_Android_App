@@ -109,7 +109,7 @@ class Gallery  : AppCompatActivity() {
                     handler.postDelayed(Runnable { mProgressBar!!.progress = 0 }, 500)
                     Toast.makeText(this@Gallery, "Upload successful", Toast.LENGTH_LONG)
                         .show()
-                    var name = mEditTextFileName!!.text.toString().trim { it <= ' ' }
+                    //var name = mEditTextFileName!!.text.toString().trim { it <= ' ' }
                     var url =  taskSnapshot.getStorage().getDownloadUrl().toString()
 
                     var uid = user!!.uid
