@@ -4,20 +4,28 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.service.autofill.Dataset
 import android.view.Gravity
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup
 import android.widget.*
+import androidx.recyclerview.widget.SnapHelper
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import io.opencensus.metrics.export.Summary
+
 
 class Profile : AppCompatActivity() {
+
+    lateinit var mDatabase : DatabaseReference
+    var user = FirebaseAuth.getInstance().currentUser
+
 
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-
-
 
         val horizontalScrollView = HorizontalScrollView(this)
         val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
@@ -59,6 +67,24 @@ class Profile : AppCompatActivity() {
         val linearLayout1 = findViewById<LinearLayout>(R.id.horizontalScroll)
 
         linearLayout1?.addView(horizontalScrollView)
+
+        mDatabase = FirebaseDatabase.getInstance().getReference()
+        val name_text = findViewById<View>(R.id.profile_name) as TextView
+        var uid = user!!.uid
+        mDatabase.child(uid).child("username").addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                name_text.text =  "Welcome " + snapshot.value.toString()
+            }
+        })
+
+
+
+
+
     }
 
 }

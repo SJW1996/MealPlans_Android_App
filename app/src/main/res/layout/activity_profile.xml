@@ -41,7 +41,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
             android:padding="10dp"
-            android:text="xxx"
+            android:text="xxxxx"
             android:textColor="#fff"
             android:textSize="15dp" />
 
