@@ -1,16 +1,27 @@
 package com.example.rankmystore
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.widget.EditText;
 import android.view.LayoutInflater;
-import android.view.View;
+import android.view.View
 import android.view.View.OnClickListener
 import android.widget.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class Review  : AppCompatActivity(){
+
+    private var mAuth: FirebaseAuth? = null
+    lateinit var mDatabase : DatabaseReference
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_review)
+        mAuth = FirebaseAuth.getInstance()
+        mDatabase = FirebaseDatabase.getInstance().reference
 
         var add_Photo_Button = findViewById<View>(R.id.addStorePhotosButton)
         var done_Button = findViewById<View>(R.id.submitButton)
@@ -32,6 +43,25 @@ class Review  : AppCompatActivity(){
     }
 
     fun finishAddPhotos(){
+        var storeNameView = findViewById<View>(R.id.storeName) as EditText
+        var addressView = findViewById<View>(R.id.Address) as EditText
+        var ratingBar = findViewById<View>(R.id.ratingBar) as RatingBar
+
+        var storeName = storeNameView.text.toString()
+        var address = addressView.text.toString()
+        var ratingScore = ratingBar.rating
+
+        if(!storeName.isEmpty() && !address.isEmpty() && ratingScore != null ){
+
+            val user = mAuth!!.currentUser
+            val uid = user!!.uid
+
+            var store = store_object(storeName,address,ratingScore)
+            mDatabase.child(uid).setValue(store)
+        }
+
+
+
         var intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
     }
