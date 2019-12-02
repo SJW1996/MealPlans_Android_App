@@ -25,7 +25,7 @@ class Gallery  : AppCompatActivity() {
 
     private var mButtonChooseImage: Button? = null
     private var mButtonUpload: Button? = null
-    private var mTextViewShowUploads: TextView? = null
+
     private var mEditTextFileName: EditText? = null
     private var mImageView: ImageView? = null
     private var mProgressBar: ProgressBar? = null
@@ -45,7 +45,7 @@ class Gallery  : AppCompatActivity() {
 
         mButtonChooseImage = findViewById(R.id.button_choose_image)
         mButtonUpload = findViewById(R.id.button_upload)
-        mTextViewShowUploads = findViewById(R.id.text_view_show_uploads)
+
         mEditTextFileName = findViewById(R.id.edit_text_file_name)
         mImageView = findViewById(R.id.image_view)
         mProgressBar = findViewById(R.id.progress_bar)
@@ -64,7 +64,8 @@ class Gallery  : AppCompatActivity() {
             }
         })
 
-        mTextViewShowUploads?.setOnClickListener(View.OnClickListener { })
+
+
 
 
     }
