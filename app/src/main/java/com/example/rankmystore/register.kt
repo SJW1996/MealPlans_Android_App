@@ -22,7 +22,7 @@ import com.google.firebase.FirebaseNetworkException
 class register : AppCompatActivity(){
     //private lateinit var mAuth: FirebaseAuth
    // val mAuth = FirebaseAuth.getInstance()
-    lateinit var mDatabase: FirebaseDatabase
+    lateinit var mDatabase : DatabaseReference
     private var mAuth: FirebaseAuth? = null
 
     // lateinit var mDatabase : DatabaseReference
@@ -32,7 +32,10 @@ class register : AppCompatActivity(){
 
         mAuth = FirebaseAuth.getInstance()
 
-        mDatabase = FirebaseDatabase.getInstance()
+        //mDatabase = FirebaseDatabase.getInstance()
+        //mDatabase = FirebaseDatabase.getInstance().getReference("RMS")
+        mDatabase = FirebaseDatabase.getInstance().reference
+
         var register_button = findViewById<View>(R.id.register_btn) as Button
         register_button.setOnClickListener({register_new_user()})
         //Go back to the login page
@@ -50,13 +53,16 @@ class register : AppCompatActivity(){
 
         var email = emailText.text.toString()
         var password = passWordText.text.toString()
+        val db = FirebaseDatabase.getInstance().getReference("RMS")
         if (!email.isEmpty() && !password.isEmpty()){
             mAuth!!.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, OnCompleteListener { task ->
                 if (task.isSuccessful){
                     val user = mAuth!!.currentUser
                     val uid = user!!.uid
                     //adding review
-                    //mDatabase.child(uid).child("Name").setValue(name)
+                    //val other_dr = FirebaseDatabase.getInstance().getReference("authors").child(uid).child(id)
+                    //db.child(uid).child("username").setValue(email)
+                    mDatabase.child(uid).setValue(email)
                     startActivity(Intent(this,login::class.java))
                     Toast.makeText(this, "Successfully registered", Toast.LENGTH_LONG).show()
 
@@ -70,6 +76,14 @@ class register : AppCompatActivity(){
             Toast.makeText(this, "Please fill up correct information", Toast.LENGTH_LONG).show()
         }
     }
+    /*
+    private fun write_user(userId: String, password: String, email: String){
+        val user = users(email, password)
+        mDatabase.child("users").child(userId).setValue(user)
+    }
+
+
+     */
     fun goto_Loginactivity(){
         val intent = Intent(this, login::class.java)
         startActivity(intent)
