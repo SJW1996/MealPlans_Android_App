@@ -45,7 +45,7 @@ class AddProfileImage  : AppCompatActivity() {
 
         mButtonChooseImage = findViewById(R.id.button_choose_image)
         mButtonUpload = findViewById(R.id.button_upload)
-        mTextViewShowUploads = findViewById(R.id.text_view_show_uploads)
+        //mTextViewShowUploads = findViewById(R.id.text_view_show_uploads)
         mEditTextFileName = findViewById(R.id.edit_text_file_name)
         mImageView = findViewById(R.id.image_view)
         mProgressBar = findViewById(R.id.progress_bar)

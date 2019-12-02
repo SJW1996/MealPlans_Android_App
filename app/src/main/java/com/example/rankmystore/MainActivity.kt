@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun goToStoreActivity( ) {
-        val store_intent = Intent(this, Stores::class.java)
+        val store_intent = Intent(this, Review::class.java)
         var login_intent = Intent(this, login::class.java)
         /*
         startActivity(store_intent)
