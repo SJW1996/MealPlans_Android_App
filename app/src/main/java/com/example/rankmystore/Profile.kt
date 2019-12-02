@@ -59,7 +59,6 @@ class Profile : AppCompatActivity() {
         val linearLayout1 = findViewById<LinearLayout>(R.id.horizontalScroll)
 
         linearLayout1?.addView(horizontalScrollView)
-
     }
 
 }

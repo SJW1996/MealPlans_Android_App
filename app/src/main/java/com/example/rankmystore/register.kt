@@ -3,6 +3,7 @@ package com.example.rankmystore
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.net.wifi.rtt.WifiRttManager
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_profile.*
 import com.google.firebase.auth.FirebaseAuthException
 import android.util.Log
 import com.google.firebase.FirebaseNetworkException
+import java.util.ArrayList
 
 class register : AppCompatActivity(){
     //private lateinit var mAuth: FirebaseAuth
@@ -50,20 +52,27 @@ class register : AppCompatActivity(){
 
         val emailText = findViewById<View>(R.id.etusername) as EditText
         val passWordText = findViewById<View>(R.id.etpassword) as EditText
+        val user_nameText = findViewById<View>(R.id.et_other_username) as EditText
 
         var email = emailText.text.toString()
         var password = passWordText.text.toString()
+        var username = user_nameText.text.toString()
+
         val db = FirebaseDatabase.getInstance().getReference("RMS")
-        if (!email.isEmpty() && !password.isEmpty()){
+        if (!email.isEmpty() && !password.isEmpty() && !username.isEmpty()){
             mAuth!!.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, OnCompleteListener { task ->
                 if (task.isSuccessful){
                     val user = mAuth!!.currentUser
                     val uid = user!!.uid
+                    var temp_list = arrayListOf<store_object>()
                     //adding review
                     //val other_dr = FirebaseDatabase.getInstance().getReference("authors").child(uid).child(id)
                     //db.child(uid).child("username").setValue(email)
-                    mDatabase.child(uid).child("username").setValue(email)
+                    /*
+                    mDatabase.child(uid).child("email").setValue(email)
                     mDatabase.child(uid).child("password").setValue(password)
+                     */
+                    write_user(uid,username,password,email,temp_list)
                     startActivity(Intent(this,login::class.java))
                     Toast.makeText(this, "Successfully registered", Toast.LENGTH_LONG).show()
                 }else{
@@ -74,12 +83,14 @@ class register : AppCompatActivity(){
             Toast.makeText(this, "Please fill up correct information", Toast.LENGTH_LONG).show()
         }
     }
-    /*
-    private fun write_user(userId: String, password: String, email: String){
-        val user = users(email, password)
-        mDatabase.child("users").child(userId).setValue(user)
+
+    private fun write_user(userId: String, user_name: String, password: String, email: String,temp_list:ArrayList<store_object>){
+        val user = users(email,user_name, password,temp_list)
+
+        //var temp_list = arrayListOf<store_object>()
+        mDatabase.child(userId).setValue(user)
     }
-     */
+
     fun goto_Loginactivity(){
         val intent = Intent(this, login::class.java)
         startActivity(intent)
