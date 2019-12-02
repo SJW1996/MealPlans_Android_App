@@ -10,7 +10,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast
 import android.view.View.OnClickListener
+import com.google.firebase.auth.FirebaseAuth
+
 class MainActivity : AppCompatActivity() {
+    var user = FirebaseAuth.getInstance().currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +42,17 @@ class MainActivity : AppCompatActivity() {
 
     fun goToStoreActivity( ) {
         val store_intent = Intent(this, Stores::class.java)
+        var login_intent = Intent(this, login::class.java)
+        /*
         startActivity(store_intent)
+
+         */
+        if(user == null){
+            startActivity(login_intent)
+        }else{
+            startActivity(store_intent)
+        }
+
     }
 
 

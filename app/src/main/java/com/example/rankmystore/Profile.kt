@@ -97,6 +97,13 @@ class Profile : AppCompatActivity() {
 
             var signout_account = findViewById<View>(R.id.button_signout)
             signout_account.setOnClickListener{sign_out_user()}
+
+
+        }
+        var mainpage_button = findViewById<View>(R.id.button_mainpage)
+        mainpage_button.setOnClickListener{
+            val intent = Intent (this, MainActivity::class.java)
+            startActivity(intent)
         }
 
     }

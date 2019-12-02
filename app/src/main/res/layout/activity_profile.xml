@@ -77,6 +77,11 @@
             android:layout_height="wrap_content"
             android:text="Edit Profile" />
         <Button
+            android:id="@+id/button_mainpage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Main page" />
+        <Button
             android:id="@+id/button_signout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
