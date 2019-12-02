@@ -88,8 +88,13 @@ class register : AppCompatActivity(){
     private fun write_user(userId: String, user_name: String, password: String, email: String,temp_list:ArrayList<store_object>){
         val user = users(email,user_name, password,temp_list)
 
-        //var temp_list = arrayListOf<store_object>()
+        var temp_list1 = arrayListOf<store_object>()
+        val temp_store1 = store_object("tempname", "8214", 3.0F)
+        val temp_store2 = store_object("tempname2", "5368", 2.0F)
+        temp_list1.add(temp_store1)
+        temp_list1.add(temp_store2)
         mDatabase.child(userId).setValue(user)
+        mDatabase.child(userId).child("storeList").setValue(temp_list1)
     }
 
     fun goto_Loginactivity(){
