@@ -81,11 +81,14 @@ class Profile : AppCompatActivity() {
             }
         })
 
-
-
-
+        var edit_profile = findViewById<View>(R.id.button_editprofile) as Button
+        edit_profile.setOnClickListener{
+            val intent = Intent(this, Edit_Profile::class.java)
+            startActivity(intent)
+        }
 
     }
+
 
 }
 
