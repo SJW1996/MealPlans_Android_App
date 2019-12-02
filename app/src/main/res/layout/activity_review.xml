@@ -24,11 +24,14 @@
         android:id="@+id/addStorePhotosButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="20dp"
         android:clickable="true"
         app:backgroundTint="@color/design_default_color_primary_dark"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintStart_toStartOf="@+id/Address"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:rippleColor="#000F0F0F"
@@ -36,15 +39,17 @@
 
     <Button
         android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="124dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="45dp"
         android:layout_marginBottom="40dp"
-        android:text="Done"
         android:background="#000000"
+        android:text="Done"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/Address" />
+        app:layout_constraintEnd_toEndOf="@+id/Address"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
@@ -88,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="63dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="12dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/addStorePhotosButton"
@@ -99,7 +104,8 @@
         android:id="@+id/textView5"
         android:layout_width="181dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="73dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="112dp"
         android:text="Add Store Photos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addStorePhotosButton" />
