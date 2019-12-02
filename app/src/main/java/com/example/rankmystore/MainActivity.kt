@@ -24,8 +24,11 @@ class MainActivity : AppCompatActivity() {
         val login_button = findViewById<View>(R.id.button2)
         login_button.setOnClickListener({goToLoginActivity()})
 
-        val storeButton = findViewById<View>(R.id.store_button)
-        storeButton.setOnClickListener({goToStoreActivity()})
+        val storeButton = findViewById<View>(R.id.addStore)
+        storeButton.setOnClickListener({goToReviewActivity()})
+
+        val tempButton = findViewById<View>(R.id.tempButton)
+        tempButton.setOnClickListener({goToTempStoreActivity()})
 
     }
 
@@ -40,7 +43,12 @@ class MainActivity : AppCompatActivity() {
         startActivity(login_intent)
     }
 
-    fun goToStoreActivity( ) {
+    fun goToTempStoreActivity( ) {
+        val login_intent = Intent(this, Stores::class.java)
+        startActivity(login_intent)
+    }
+
+    fun goToReviewActivity( ) {
         val store_intent = Intent(this, Review::class.java)
         var login_intent = Intent(this, login::class.java)
         /*
