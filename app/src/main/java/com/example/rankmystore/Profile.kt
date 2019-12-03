@@ -1,25 +1,17 @@
 package com.example.rankmystore
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.content.Intent
-import android.net.Uri
-import android.service.autofill.Dataset
+import android.graphics.drawable.Drawable
+import android.os.Bundle
 import android.view.Gravity
-import android.view.LayoutInflater;
-import android.view.View;
+import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.recyclerview.widget.SnapHelper
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import io.opencensus.metrics.export.Summary
-import com.google.android.gms.tasks.Task
-import androidx.annotation.NonNull
-import com.google.android.gms.tasks.OnCompleteListener
-import android.widget.ImageView
-import java.net.URI
+import com.squareup.picasso.Picasso
 
 
 class Profile : AppCompatActivity() {
@@ -92,12 +84,14 @@ class Profile : AppCompatActivity() {
 
             //retreive image from database
             //start here
-            val imageView = findViewById<ImageView>(R.id.profile_image)
+            var imageView = findViewById<ImageView>(R.id.profile_image)
             var mDatabaseImageRef: DatabaseReference
             mDatabaseImageRef = mDatabase.child(uid).child("profileImage")
+            var url = mDatabaseImageRef.toString()
 
-            //var resId = imgResId
-            //imageView.setImageResource(imgResId)
+            Picasso.get().load(url).into(imageView)
+
+
 
 
             var edit_profile = findViewById<View>(R.id.button_editprofile) as Button
