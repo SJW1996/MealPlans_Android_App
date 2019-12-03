@@ -3,6 +3,7 @@ package com.example.rankmystore
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.provider.SyncStateContract
 import android.util.Log
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity() {
 
     var user = FirebaseAuth.getInstance().currentUser
     lateinit var mDatabase : DatabaseReference
-
+    lateinit var herolist :MutableList<store_object>
+    lateinit var listView: ListView
     //lateinit var array: Array<String>
     //array of testing
 
@@ -39,73 +41,79 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // mDatabase.child(uid).child("username")
         mDatabase = FirebaseDatabase.getInstance().getReference()
         val adapter_arraylist = ArrayList<String>()
-
+        herolist = mutableListOf()
+        listView = findViewById(R.id.stores_list)
         if (user != null){
             var uid = user!!.uid
             //var store_List = mDatabase.child(uid).child("storeList")
             var read_store_list = arrayListOf<String>()
+
+
             //var temp_store_array = arrayListOf<String>()
+
+            //addListenersinglevalue_event
+
             mDatabase.addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {
                     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    for (snapshot in snapshot.children){
-                        if (snapshot.key == uid){
-                            //val temp_storelist = snapshot.child("storeList")
-                            for (ele in snapshot.children){
-                                if (ele.key == "storeList"){
-                                    Log.i(TAG, "this is element")
-                                    for(stores in ele.children){
-                                        var copy_store = stores.getValue(store_object::class.java)
-                                        var temp_store_name = copy_store!!.storename
-                                        Log.i(TAG, "this is element 3" + temp_store_name)
-                                        read_store_list.add(temp_store_name)
-
-
+                    if (snapshot.exists()) {
+                        for (snapshot in snapshot.children) {
+                            if (snapshot.key == uid) {
+                                //val temp_storelist = snapshot.child("storeList")
+                                for (ele in snapshot.children) {
+                                    if (ele.key == "storeList") {
+                                        Log.i(TAG, "this is element")
+                                        for (stores in ele.children) {
+                                            var copy_store = stores.getValue(store_object::class.java)
+                                            herolist.add(copy_store!!)
+                                            //var temp_store_name = copy_store!!.storename
+                                            //Log.i(TAG, "this is element 3" + temp_store_name)
+                                            //read_store_list.add(temp_store_name)
+                                            //herolist.add(temp_store_name)
+                                        }
+                                        val adapter = store_adapter(applicationContext,R.layout.store_objects,herolist)
+                                        listView.adapter = adapter
                                     }
                                 }
+                                /*
+                                for (s in read_store_list) {
+                                    Log.i(TAG, "This is strings2222 " + s)
+                                    adapter_arraylist.add(s)
+                                    Log.i(TAG, s + "added complete")
+                                }
+                                */
                             }
-                            //var i = 0;
-                            for ( s in read_store_list){
-                                Log.i(TAG, "This is strings2222 " + s)
-                                adapter_arraylist.add(s)
-                                Log.i(TAG,  s + "added complete")
-                            }
-                            Log.i(TAG,  "here is the list: " + adapter_arraylist)
-
                         }
                     }
                 }
-
-
 
             })
             /*
             for (s in adapter_arraylist){
                 Log.i(TAG, "This is string333333" + s)
             }
+
             */
 
+            /*
             var array = arrayOf("Melbourne", "Vienna", "Vancouver", "Toronto", "Calgary", "Adelaide", "Perth", "Auckland",
                 "Helsinki", "Hamburg", "Munich", "New York", "Sydney", "Paris", "Cape Town", "Barcelona", "London", "Bangkok")
 
 
-            var array_name = adapter_arraylist.toArray()
-            Log.i(TAG,  "here is the list: " + adapter_arraylist)
-            Log.i(TAG,  "here is the array: " + array_name)
-            Log.i(TAG, "check here")
 
             val adapter = ArrayAdapter(this,
-                R.layout.list_view_item, array_name)
+                R.layout.list_view_item, array)
 
             val listView:ListView = findViewById(R.id.stores_list)
             listView.setAdapter(adapter)
 
-
+            */
             /*
             mDatabase.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
