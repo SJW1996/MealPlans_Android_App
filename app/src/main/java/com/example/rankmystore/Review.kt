@@ -133,8 +133,12 @@ class Review  : AppCompatActivity(){
             temp_stores.add(current_store)
             mDatabase.child(uid).child("storeList").setValue(temp_stores)
 
+            val url = intent.getStringExtra("EXTRA")
+
+            Log.i(TAG, "here is the url" + url)
+
         }
-        
+
 
         var intent = Intent(this,MainActivity::class.java)
         startActivity(intent)

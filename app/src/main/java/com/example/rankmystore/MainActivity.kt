@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     var user = FirebaseAuth.getInstance().currentUser
     lateinit var mDatabase : DatabaseReference
-    val adapter_arraylist = ArrayList<String>()
+
     //lateinit var array: Array<String>
     //array of testing
 
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mDatabase = FirebaseDatabase.getInstance().getReference()
-
+        val adapter_arraylist = ArrayList<String>()
 
         if (user != null){
             var uid = user!!.uid
@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
                     TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
-            //
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (snapshot in snapshot.children){
                         if (snapshot.key == uid){
@@ -76,10 +75,14 @@ class MainActivity : AppCompatActivity() {
                                 adapter_arraylist.add(s)
                                 Log.i(TAG,  s + "added complete")
                             }
+                            Log.i(TAG,  "here is the list: " + adapter_arraylist)
 
                         }
                     }
                 }
+
+
+
             })
             /*
             for (s in adapter_arraylist){
@@ -88,17 +91,18 @@ class MainActivity : AppCompatActivity() {
             */
 
 
-/*
-            var array_name = array
 
-            Log.i(TAG, "this is element2")
+            var array_name = adapter_arraylist.toArray()
+            Log.i(TAG,  "here is the list: " + adapter_arraylist)
+            Log.i(TAG,  "here is the array: " + array_name)
+            Log.i(TAG, "check here")
 
             val adapter = ArrayAdapter(this,
-                R.layout.list_view_item, array)
+                R.layout.list_view_item, array_name)
 
             val listView:ListView = findViewById(R.id.stores_list)
             listView.setAdapter(adapter)
-*/
+
 
             /*
             mDatabase.addValueEventListener(object: ValueEventListener {

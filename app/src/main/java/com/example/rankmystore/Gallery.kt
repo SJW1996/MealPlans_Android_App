@@ -108,7 +108,13 @@ class Gallery  : AppCompatActivity() {
                     var url =  taskSnapshot.getStorage().getDownloadUrl().toString()
 
                     var uid = user!!.uid
-                    mDatabaseRef?.child(uid)?.child("Profile_image")?.setValue(url)
+//                    mDatabaseRef?.child(uid)?.child("Profile_image")?.setValue(url)
+//
+                    val intent = Intent(this, Review::class.java)
+                    intent.putExtra("EXTRA", url)
+                    startActivity(intent)
+
+
 
 //                    val upload = Upload( name, url)
 //                    val uploadId = mDatabaseRef!!.push().key
