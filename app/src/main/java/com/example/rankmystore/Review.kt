@@ -21,15 +21,20 @@ class Review  : AppCompatActivity(){
 
     private var mAuth: FirebaseAuth? = null
     lateinit var mDatabase : DatabaseReference
-    private  lateinit var addrText: EditText
-    private  lateinit var storename: EditText
+    lateinit var addrText : EditText
+    lateinit var storenameText: EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_review)
-        addrText = findViewById(R.id.Address)
-        storename = findViewById(R.id.storeName)
+
+        addrText = findViewById<EditText>(R.id.Address)
+        storenameText = findViewById<EditText>(R.id.storeName)
+
+        var address = addrText.text.toString()
+        var storename = storenameText.text.toString()
+
 
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
@@ -45,6 +50,13 @@ class Review  : AppCompatActivity(){
                 // Called when the user swipes the RatingBar
                 tv.text = getString(R.string.rating_string, rating)
             }
+
+
+
+//        val user = mAuth!!.currentUser
+//        val uid = user!!.uid
+//        val rating_value = findViewById<RatingBar>(R.id.ratingBar).rating
+
 
         done_Button.setOnClickListener(){finishAddPhotos()}
         add_Photo_Button.setOnClickListener(){goToGallery()}
@@ -70,17 +82,53 @@ class Review  : AppCompatActivity(){
             val user = mAuth!!.currentUser
             val uid = user!!.uid
 
-            var store = store_object(storeName,address,ratingScore)
-//            Log.i("Review", "create store object")
-            mDatabase.child(uid).setValue(store)
-                .addOnFailureListener { e ->
-                    Toast.makeText(
-                        this@Review,
-                        e.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
+            var current_store = store_object(storeName, address, ratingScore)
+
+            val stores = arrayListOf<store_object>()
+
+            // retrieve store list from database, and update it
+            mDatabase.addValueEventListener(object: ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                    for (snapshot in dataSnapshot.children) {
+                        val storelist = snapshot.child(uid).child("storeList").getValue(arrayListOf<store_object>()::class.java)
+                        if(storelist == null){
+
+                        }else{
+                            for(store in storelist){
+                                if(store == null){
+
+                                }else{
+                                    stores.add(store)
+                                }
+                            }
+                        }
+
+
+                    }
                 }
+
+                override fun onCancelled(error: DatabaseError) {
+                    //print error.message
+                }
+            })
+
+            stores.add(current_store)
+            mDatabase.child(uid).child("storeList").setValue(stores)
+//            Log.i("Review", "create store object")
+//            mDatabase.child(uid).setValue(store)
+//                .addOnFailureListener { e ->
+//                    Toast.makeText(
+//                        this@Review,
+//                        e.message,
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
 //            Log.i("Review", " go through add into database")
+
+
+
+
         }
 
 
