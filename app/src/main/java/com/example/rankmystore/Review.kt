@@ -129,33 +129,12 @@ class Review  : AppCompatActivity(){
 
             var current_store = store_object(storeName, address, ratingScore)
 
-
-
-//            val storelist = mDatabase.child(uid).child("storeList")
-
-
-
-            // retrieve store list from database, and update it
-
             Log.i(TAG, "current storelist :: " + temp_stores)
             temp_stores.add(current_store)
             mDatabase.child(uid).child("storeList").setValue(temp_stores)
-//            Log.i("Review", "create store object")
-//            mDatabase.child(uid).setValue(store)
-//                .addOnFailureListener { e ->
-//                    Toast.makeText(
-//                        this@Review,
-//                        e.message,
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//            Log.i("Review", " go through add into database")
 
         }
-
-
-//        }
-
+        
 
         var intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
