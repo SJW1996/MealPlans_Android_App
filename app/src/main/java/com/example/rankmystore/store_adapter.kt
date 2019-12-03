@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_review.*
 import kotlin.collections.arrayListOf
 
 
+
 class store_adapter(val mCtx: Context, val layoutResId: Int, val store_list: List<store_object>)
     :ArrayAdapter<store_object>(mCtx,layoutResId,store_list){
 
@@ -30,6 +31,13 @@ class store_adapter(val mCtx: Context, val layoutResId: Int, val store_list: Lis
         val store = store_list[position]
 
         textViewName.text = store.storename
+        textViewName.setOnClickListener {
+            val intent = Intent(mCtx, Stores::class.java)
+            var store_name_str = ""
+            intent.putExtra("key", "Kotlin")
+            intent.putExtra("value", store.storename)
+            mCtx.startActivity(intent)
+        }
         return view
     }
 

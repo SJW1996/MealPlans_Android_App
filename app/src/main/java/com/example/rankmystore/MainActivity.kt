@@ -7,18 +7,14 @@ import android.provider.SyncStateContract
 import android.util.Log
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Toast
 import android.view.View.OnClickListener
+import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_review.*
+import org.w3c.dom.Text
 import kotlin.collections.arrayListOf
 
 
@@ -54,7 +50,6 @@ class MainActivity : AppCompatActivity() {
 
             //var temp_store_array = arrayListOf<String>()
 
-            //addListenersinglevalue_event
 
             mDatabase.addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {
@@ -79,6 +74,7 @@ class MainActivity : AppCompatActivity() {
                                         }
                                         val adapter = store_adapter(applicationContext,R.layout.store_objects,herolist)
                                         listView.adapter = adapter
+
                                     }
                                 }
                                 /*
@@ -113,45 +109,15 @@ class MainActivity : AppCompatActivity() {
             val listView:ListView = findViewById(R.id.stores_list)
             listView.setAdapter(adapter)
 
-            */
-            /*
-            mDatabase.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                for (snapshot in dataSnapshot.children) {
-                    Log.i(TAG, "here1111")
-                    Log.i(TAG, "value of snapshot is " + snapshot)
-                    if (snapshot.key == uid) {
-                        val storelist = snapshot.child("storeList")
-                        for(ele in snapshot.children){
-                            Log.i(TAG, "here222")
 
-                            if(ele.key == "storeList"){
-                                Log.i(TAG, "value of storelist is " + ele)
-                                for(stores in ele.children){
-                                    Log.i(TAG, "here333")
-                                    Log.i(TAG, "value of store is " + stores)
-                                    val copy_store = stores.getValue(store_object::class.java)
-                                    if (copy_store != null) {
-                                        Log.i(TAG, "here4444")
-                                        Log.i(TAG, "current store is " + copy_store)
-                                        temp_stores.add(copy_store)
-                                        Log.i(TAG, "here::: " + temp_stores)
-
-                                    }
-                                }
-                            }
-                        }
-                        Log.i(TAG, "here555")
-
+            val tv_click_me = findViewById(R.id.tv_click_me) as TextView
+            // set on-click listener
+                tv_click_me.setOnClickListener {
+                    // your code to run when the user clicks on the TextView
                     }
-                }
-            }
 
-
-        })
-
-        */
+            */
 
 
         }

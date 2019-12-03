@@ -15,13 +15,23 @@ import android.widget.*
 import java.net.URL
 import android.graphics.BitmapFactory
 import android.graphics.Bitmap
-
+import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
+import androidx.core.net.toUri
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 
 
 class Stores : AppCompatActivity(){
+    lateinit var mDatabase : DatabaseReference
+    var user = FirebaseAuth.getInstance().currentUser
+    private var mAuth: FirebaseAuth? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stores)
+        mDatabase = FirebaseDatabase.getInstance().getReference()
 
         val horizontalScrollView = HorizontalScrollView(this)
         val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
@@ -89,6 +99,32 @@ class Stores : AppCompatActivity(){
 //                Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 //            }
 //        }
+        /*
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference()
+        val name_text = findViewById<View>(R.id.profile_name) as TextView
+
+        if (user != null){
+            var uid = user!!.uid
+            mDatabase.child(uid).child("username").addValueEventListener(object :ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    name_text.text =  "Welcome " + snapshot.value.toString()
+                }
+            })
+         */
+        var store_name_text = findViewById(R.id.textView3) as TextView
+        if (user != null) {
+            var bundle :Bundle ? =intent.extras
+            var real_name = bundle!!.getString("value")
+            //var strUser: String = intent.getStringExtra("value")
+            store_name_text.text = "Store Name:  " + real_name
+        
+        }
 
         var go_back_to_main = findViewById<View>(R.id.button_goback) as Button
         go_back_to_main.setOnClickListener{
