@@ -3,6 +3,7 @@ package com.example.rankmystore
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -11,13 +12,137 @@ import android.widget.EditText;
 import android.widget.Toast
 import android.view.View.OnClickListener
 import com.google.firebase.auth.FirebaseAuth
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_review.*
+import kotlin.collections.arrayListOf
+
+
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val TAG = "MapLocation"
+    }
+
     var user = FirebaseAuth.getInstance().currentUser
+    lateinit var mDatabase : DatabaseReference
+    val adapter_arraylist = ArrayList<String>()
+    //lateinit var array: Array<String>
+    //array of testing
+
+   // var array = arrayOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        mDatabase = FirebaseDatabase.getInstance().getReference()
+
+
+        if (user != null){
+            var uid = user!!.uid
+            //var store_List = mDatabase.child(uid).child("storeList")
+            var read_store_list = arrayListOf<String>()
+            //var temp_store_array = arrayListOf<String>()
+            mDatabase.addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+            //
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (snapshot in snapshot.children){
+                        if (snapshot.key == uid){
+                            //val temp_storelist = snapshot.child("storeList")
+                            for (ele in snapshot.children){
+                                if (ele.key == "storeList"){
+                                    Log.i(TAG, "this is element")
+                                    for(stores in ele.children){
+                                        var copy_store = stores.getValue(store_object::class.java)
+                                        var temp_store_name = copy_store!!.storename
+                                        Log.i(TAG, "this is element 3" + temp_store_name)
+                                        read_store_list.add(temp_store_name)
+
+
+                                    }
+                                }
+                            }
+                            //var i = 0;
+                            for ( s in read_store_list){
+                                Log.i(TAG, "This is strings2222 " + s)
+                                adapter_arraylist.add(s)
+                                Log.i(TAG,  s + "added complete")
+                            }
+
+                        }
+                    }
+                }
+            })
+            /*
+            for (s in adapter_arraylist){
+                Log.i(TAG, "This is string333333" + s)
+            }
+            */
+
+
+/*
+            var array_name = array
+
+            Log.i(TAG, "this is element2")
+
+            val adapter = ArrayAdapter(this,
+                R.layout.list_view_item, array)
+
+            val listView:ListView = findViewById(R.id.stores_list)
+            listView.setAdapter(adapter)
+*/
+
+            /*
+            mDatabase.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                for (snapshot in dataSnapshot.children) {
+                    Log.i(TAG, "here1111")
+                    Log.i(TAG, "value of snapshot is " + snapshot)
+                    if (snapshot.key == uid) {
+                        val storelist = snapshot.child("storeList")
+                        for(ele in snapshot.children){
+                            Log.i(TAG, "here222")
+
+                            if(ele.key == "storeList"){
+                                Log.i(TAG, "value of storelist is " + ele)
+                                for(stores in ele.children){
+                                    Log.i(TAG, "here333")
+                                    Log.i(TAG, "value of store is " + stores)
+                                    val copy_store = stores.getValue(store_object::class.java)
+                                    if (copy_store != null) {
+                                        Log.i(TAG, "here4444")
+                                        Log.i(TAG, "current store is " + copy_store)
+                                        temp_stores.add(copy_store)
+                                        Log.i(TAG, "here::: " + temp_stores)
+
+                                    }
+                                }
+                            }
+                        }
+                        Log.i(TAG, "here555")
+
+                    }
+                }
+            }
+
+
+        })
+
+        */
+
+
+        }
+
+
 
         val profileBoutton = findViewById<View>(R.id.button3)
         profileBoutton.setOnClickListener { goToAnActivity() }

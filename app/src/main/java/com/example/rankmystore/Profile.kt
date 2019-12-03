@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
@@ -87,7 +88,7 @@ class Profile : AppCompatActivity() {
             var imageView = findViewById<ImageView>(R.id.profile_image)
             var mDatabaseImageRef: DatabaseReference
             mDatabaseImageRef = mDatabase.child(uid).child("profileImage")
-            var url = mDatabaseImageRef.toString()
+            var url = mDatabaseImageRef.toString().toUri()
 
             Picasso.get().load(url).into(imageView)
 
