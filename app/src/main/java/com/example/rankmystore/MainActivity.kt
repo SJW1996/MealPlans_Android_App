@@ -90,6 +90,8 @@ class MainActivity : AppCompatActivity() {
             }
             */
 
+            var array = arrayOf("Melbourne", "Vienna", "Vancouver", "Toronto", "Calgary", "Adelaide", "Perth", "Auckland",
+                "Helsinki", "Hamburg", "Munich", "New York", "Sydney", "Paris", "Cape Town", "Barcelona", "London", "Bangkok")
 
 
             var array_name = adapter_arraylist.toArray()

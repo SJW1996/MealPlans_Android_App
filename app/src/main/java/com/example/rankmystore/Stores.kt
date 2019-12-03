@@ -12,6 +12,11 @@ import android.view.View;
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.*
+import java.net.URL
+import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+
+
 
 class Stores : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +41,11 @@ class Stores : AppCompatActivity(){
         params1.setMargins(30, 20, 30, 0)
         params1.gravity = Gravity.CENTER
         imageView1.layoutParams = params1
-        imageView1.setImageResource(R.drawable.test1)
+        //testing for loading image
+        var url = URL("https://upload.wikimedia.org/wikipedia/commons/3/38/XO_-_2.gif")
+        val bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+        imageView1.setImageBitmap(bmp);
+        //imageView1.setImageResource(R.drawable.test1)
         linearLayout.addView(imageView1)
 
         val imageView2 = ImageView(this)
