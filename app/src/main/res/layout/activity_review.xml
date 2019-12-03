@@ -102,6 +102,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="14dp"
+        android:background="#000000"
+        android:textColor="#ffffff"
         android:text="Show Map"
         app:layout_constraintBottom_toTopOf="@+id/ratingBar"
         app:layout_constraintStart_toStartOf="@+id/ratingBar"

@@ -33,9 +33,11 @@ class store_adapter(val mCtx: Context, val layoutResId: Int, val store_list: Lis
         textViewName.text = store.storename
         textViewName.setOnClickListener {
             val intent = Intent(mCtx, Stores::class.java)
-            var store_name_str = ""
+            //var store_name_str = ""
             intent.putExtra("key", "Kotlin")
             intent.putExtra("value", store.storename)
+            intent.putExtra("store_score", store.rating_score)
+
             mCtx.startActivity(intent)
         }
         return view

@@ -117,13 +117,18 @@ class Stores : AppCompatActivity(){
                 }
             })
          */
+
+        //read store information from the database
         var store_name_text = findViewById(R.id.textView3) as TextView
+        var rating_bar = findViewById(R.id.ratingBar) as RatingBar
         if (user != null) {
             var bundle :Bundle ? =intent.extras
             var real_name = bundle!!.getString("value")
+            val real_rating = bundle!!.getFloat("store_score")
             //var strUser: String = intent.getStringExtra("value")
             store_name_text.text = "Store Name:  " + real_name
-        
+            rating_bar.rating = real_rating
+
         }
 
         var go_back_to_main = findViewById<View>(R.id.button_goback) as Button

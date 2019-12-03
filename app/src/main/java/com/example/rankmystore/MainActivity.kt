@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_review.*
 import org.w3c.dom.Text
 import kotlin.collections.arrayListOf
 
-
+import android.graphics.Color;
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -132,8 +132,8 @@ class MainActivity : AppCompatActivity() {
         val storeButton = findViewById<View>(R.id.addStore)
         storeButton.setOnClickListener({goToReviewActivity()})
 
-        val tempButton = findViewById<View>(R.id.tempButton)
-        tempButton.setOnClickListener({goToTempStoreActivity()})
+        //val tempButton = findViewById<View>(R.id.tempButton)
+        //tempButton.setOnClickListener({goToTempStoreActivity()})
 
     }
 
