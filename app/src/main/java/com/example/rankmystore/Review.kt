@@ -13,6 +13,8 @@ import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_review.*
+import kotlin.collections.arrayListOf
+
 
 class Review  : AppCompatActivity(){
     companion object {
@@ -38,6 +40,49 @@ class Review  : AppCompatActivity(){
 
         mAuth = FirebaseAuth.getInstance()
         mDatabase = FirebaseDatabase.getInstance().reference
+        val user = mAuth!!.currentUser
+        val uid = user!!.uid
+        val temp_stores = arrayListOf<store_object>()
+
+        mDatabase.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                for (snapshot in dataSnapshot.children) {
+                    Log.i(TAG, "here1111")
+                    Log.i(TAG, "value of snapshot is " + snapshot)
+                    if (snapshot.key == uid) {
+                        val storelist = snapshot.child("storeList")
+                        for(ele in snapshot.children){
+                            Log.i(TAG, "here222")
+
+                            if(ele.key == "storeList"){
+                                Log.i(TAG, "value of storelist is " + ele)
+                                for(stores in ele.children){
+                                    Log.i(TAG, "here333")
+                                    Log.i(TAG, "value of store is " + stores)
+                                    val copy_store = stores.getValue(store_object::class.java)
+                                    if (copy_store != null) {
+                                        Log.i(TAG, "here4444")
+                                        Log.i(TAG, "current store is " + copy_store)
+                                        temp_stores.add(copy_store)
+                                        Log.i(TAG, "here::: " + temp_stores)
+
+                                    }
+                                }
+                            }
+                        }
+                        Log.i(TAG, "here555")
+
+                    }
+                }
+            }
+
+
+            override fun onCancelled(error: DatabaseError) {
+                //print error.message
+            }
+        })
+
 
         var add_Photo_Button = findViewById<View>(R.id.addStorePhotosButton)
         var done_Button = findViewById<View>(R.id.submitButton)
@@ -58,7 +103,7 @@ class Review  : AppCompatActivity(){
 //        val rating_value = findViewById<RatingBar>(R.id.ratingBar).rating
 
 
-        done_Button.setOnClickListener(){finishAddPhotos()}
+        done_Button.setOnClickListener(){finishAddPhotos(temp_stores)}
         add_Photo_Button.setOnClickListener(){goToGallery()}
 
         var show_map_button = findViewById<View>(R.id.button4)
@@ -68,7 +113,7 @@ class Review  : AppCompatActivity(){
 
     }
 
-    fun finishAddPhotos(){
+    fun finishAddPhotos(temp_stores : ArrayList<store_object>){
         var storeNameView = findViewById<View>(R.id.storeName) as EditText
         var addressView = findViewById<View>(R.id.Address) as EditText
         var ratingBar = findViewById<View>(R.id.ratingBar) as RatingBar
@@ -77,43 +122,24 @@ class Review  : AppCompatActivity(){
         var address = addressView.text.toString()
         var ratingScore = ratingBar.rating
 
-        if(!storeName.isEmpty() && !address.isEmpty()){
+        if(!storeName.isEmpty() && !address.isEmpty()) {
 
             val user = mAuth!!.currentUser
             val uid = user!!.uid
 
             var current_store = store_object(storeName, address, ratingScore)
 
-            val stores = arrayListOf<store_object>()
+
+
+//            val storelist = mDatabase.child(uid).child("storeList")
+
+
 
             // retrieve store list from database, and update it
-            mDatabase.addValueEventListener(object: ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                    for (snapshot in dataSnapshot.children) {
-                        val storelist = snapshot.child(uid).child("storeList").getValue(arrayListOf<store_object>()::class.java)
-                        if(storelist == null){
-
-                        }else{
-                            for(store in storelist){
-                                if(store == null){
-
-                                }else{
-                                    stores.add(store)
-                                }
-                            }
-                        }
-
-
-                    }
-                }
-                override fun onCancelled(error: DatabaseError) {
-                    //print error.message
-                }
-            })
-
-            stores.add(current_store)
-            mDatabase.child(uid).child("storeList").setValue(stores)
+            Log.i(TAG, "current storelist :: " + temp_stores)
+            temp_stores.add(current_store)
+            mDatabase.child(uid).child("storeList").setValue(temp_stores)
 //            Log.i("Review", "create store object")
 //            mDatabase.child(uid).setValue(store)
 //                .addOnFailureListener { e ->
@@ -125,10 +151,10 @@ class Review  : AppCompatActivity(){
 //                }
 //            Log.i("Review", " go through add into database")
 
-
-
-
         }
+
+
+//        }
 
 
         var intent = Intent(this,MainActivity::class.java)
