@@ -12,7 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_marginStart="112dp"
         android:layout_marginTop="70dp"
+        android:layout_marginEnd="112dp"
         android:layout_marginBottom="81dp"
         android:clickable="true"
         app:backgroundTint="@color/design_default_color_primary_dark"
@@ -51,12 +53,14 @@
         android:id="@+id/storeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginEnd="112dp"
         android:layout_marginBottom="43dp"
         android:ems="10"
         android:hint="Store Name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/Address"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -64,11 +68,13 @@
         android:id="@+id/Address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginEnd="112dp"
         android:ems="10"
         android:hint="Address"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/storeName" />
 
@@ -76,11 +82,13 @@
         android:id="@+id/textView5"
         android:layout_width="181dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="103dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginEnd="112dp"
         android:layout_marginBottom="62dp"
         android:text="Add Store Photos"
         app:layout_constraintBottom_toTopOf="@+id/storeName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addStorePhotosButton" />
 
     <RatingBar
@@ -100,13 +108,15 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginEnd="96dp"
         android:layout_marginBottom="14dp"
         android:background="#000000"
-        android:textColor="#ffffff"
         android:text="Show Map"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/ratingBar"
-        app:layout_constraintStart_toStartOf="@+id/ratingBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Address" />
 
     <TextView
