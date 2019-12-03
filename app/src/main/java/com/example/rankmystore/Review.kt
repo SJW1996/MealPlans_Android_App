@@ -18,7 +18,7 @@ import kotlin.collections.arrayListOf
 
 class Review  : AppCompatActivity(){
     companion object {
-        const val TAG = "MapLocation"
+        const val TAG = "Review"
     }
 
     private var mAuth: FirebaseAuth? = null
