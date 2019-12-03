@@ -12,13 +12,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="81dp"
         android:clickable="true"
         app:backgroundTint="@color/design_default_color_primary_dark"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="parent"
         app:rippleColor="#000F0F0F"
         app:srcCompat="@android:drawable/ic_input_add" />
 
@@ -33,7 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView3"
@@ -50,22 +51,20 @@
         android:id="@+id/storeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginBottom="57dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="43dp"
         android:ems="10"
         android:hint="Store Name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/Address"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
         android:id="@+id/Address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginStart="16dp"
         android:ems="10"
         android:hint="Address"
         android:inputType="textPersonName"
@@ -77,11 +76,11 @@
         android:id="@+id/textView5"
         android:layout_width="181dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="98dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="62dp"
         android:text="Add Store Photos"
-        app:layout_constraintBottom_toTopOf="@+id/submitButton"
-        app:layout_constraintEnd_toEndOf="@+id/addStorePhotosButton"
-        app:layout_constraintStart_toEndOf="@+id/addStorePhotosButton"
+        app:layout_constraintBottom_toTopOf="@+id/storeName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addStorePhotosButton" />
 
     <RatingBar
@@ -89,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:stepSize="0.5"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
@@ -101,20 +100,20 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="59dp"
-        android:layout_marginBottom="29dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="14dp"
         android:text="Show Map"
         app:layout_constraintBottom_toTopOf="@+id/ratingBar"
-        app:layout_constraintEnd_toEndOf="@+id/ratingBar"
+        app:layout_constraintStart_toStartOf="@+id/ratingBar"
         app:layout_constraintTop_toBottomOf="@+id/Address" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="59dp"
+        android:layout_marginBottom="58dp"
         android:text="Scores:"
-        app:layout_constraintBottom_toTopOf="@+id/addStorePhotosButton"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
