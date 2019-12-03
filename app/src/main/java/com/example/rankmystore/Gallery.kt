@@ -63,11 +63,6 @@ class Gallery  : AppCompatActivity() {
                 uploadFile()
             }
         })
-
-
-
-
-
     }
 
     private fun openFileChooser() {

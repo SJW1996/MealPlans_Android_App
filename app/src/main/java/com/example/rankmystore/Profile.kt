@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.net.Uri
 import android.service.autofill.Dataset
 import android.view.Gravity
 import android.view.LayoutInflater;
@@ -17,8 +18,8 @@ import io.opencensus.metrics.export.Summary
 import com.google.android.gms.tasks.Task
 import androidx.annotation.NonNull
 import com.google.android.gms.tasks.OnCompleteListener
-
-
+import android.widget.ImageView
+import java.net.URI
 
 
 class Profile : AppCompatActivity() {
@@ -88,6 +89,16 @@ class Profile : AppCompatActivity() {
                     name_text.text =  "Welcome " + snapshot.value.toString()
                 }
             })
+
+            //retreive image from database
+            //start here
+            val imageView = findViewById<ImageView>(R.id.profile_image)
+            var mDatabaseImageRef: DatabaseReference
+            mDatabaseImageRef = mDatabase.child(uid).child("profileImage")
+
+            //var resId = imgResId
+            //imageView.setImageResource(imgResId)
+
 
             var edit_profile = findViewById<View>(R.id.button_editprofile) as Button
             edit_profile.setOnClickListener{

@@ -107,7 +107,6 @@ class Review  : AppCompatActivity(){
 
                     }
                 }
-
                 override fun onCancelled(error: DatabaseError) {
                     //print error.message
                 }
