@@ -21,8 +21,9 @@
         <TextView
             android:layout_width="179dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="1dp"
             android:text="Profile"
+            android:gravity="center"
             android:textColor="#fff"
             android:textSize="35dp" />
 
@@ -30,7 +31,7 @@
             android:id="@+id/profile_image"
             android:layout_width="217dp"
             android:layout_height="230dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="1dp"
             android:padding="50dp"
             android:src="@drawable/ic_action_profile" />
 
@@ -39,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:layout_marginTop="1dp"
             app:backgroundTint="@color/design_default_color_primary_dark"
             app:rippleColor="#000F0F0F"
             app:srcCompat="@android:drawable/ic_input_add" />
@@ -49,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
             android:padding="10dp"
             android:text="xxxxx"
             android:textColor="#fff"
