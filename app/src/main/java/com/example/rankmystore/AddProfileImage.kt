@@ -25,6 +25,8 @@ class AddProfileImage  : AppCompatActivity() {
 
     private var mButtonChooseImage: Button? = null
     private var mButtonUpload: Button? = null
+
+    private var mButtonBackMain: Button? = null
     private var mTextViewShowUploads: TextView? = null
     private var mEditTextFileName: EditText? = null
     private var mImageView: ImageView? = null
@@ -49,6 +51,10 @@ class AddProfileImage  : AppCompatActivity() {
         mImageView = findViewById(R.id.image_view)
         mProgressBar = findViewById(R.id.progress_bar)
 
+        mButtonBackMain = findViewById(R.id.button_backMain)
+
+
+
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads")
         mDatabaseRef = FirebaseDatabase.getInstance().getReference()
 
@@ -62,7 +68,7 @@ class AddProfileImage  : AppCompatActivity() {
                 uploadFile()
             }
         })
-
+        mButtonBackMain?.setOnClickListener{backMain()}
         mTextViewShowUploads?.setOnClickListener(View.OnClickListener { })
 
 
@@ -107,7 +113,7 @@ class AddProfileImage  : AppCompatActivity() {
                     handler.postDelayed(Runnable { mProgressBar!!.progress = 0 }, 500)
                     Toast.makeText(this@AddProfileImage, "Upload successful", Toast.LENGTH_LONG)
                         .show()
-                    var name = mEditTextFileName!!.text.toString().trim { it <= ' ' }
+//                    var name = mEditTextFileName!!.text.toString().trim { it <= ' ' }
                     var url =  taskSnapshot.getStorage().getDownloadUrl().toString()
 
                     var uid = user!!.uid
@@ -134,8 +140,8 @@ class AddProfileImage  : AppCompatActivity() {
         }
     }
 
-    fun go_To_Review() {
-        var intent = Intent(this, Review::class.java)
+    fun backMain() {
+        var intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 

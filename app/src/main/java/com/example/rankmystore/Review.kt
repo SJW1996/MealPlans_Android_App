@@ -23,6 +23,8 @@ class Review  : AppCompatActivity(){
 
     private var mAuth: FirebaseAuth? = null
     lateinit var mDatabase : DatabaseReference
+
+
     lateinit var addrText : EditText
     lateinit var storenameText: EditText
 
@@ -43,7 +45,7 @@ class Review  : AppCompatActivity(){
         var address = addressView.text.toString()
         var ratingScore = ratingBar.rating.toString()
 
-//        addrText = findViewById<EditText>(R.id.Address)
+        addrText = findViewById<EditText>(R.id.Address)
 //        storenameText = findViewById<EditText>(R.id.storeName)
 //
 //        var address = addrText.text.toString()
@@ -115,12 +117,15 @@ class Review  : AppCompatActivity(){
 //        val rating_value = findViewById<RatingBar>(R.id.ratingBar).rating
 
 
+        var show_map_button = findViewById<View>(R.id.button4)
+
+        show_map_button.setOnClickListener{processClick()}
 
         done_Button.setOnClickListener(){finishAddPhotos()}
         add_Photo_Button.setOnClickListener(){goToGallery()}
 
-        var show_map_button = findViewById<View>(R.id.button4)
-        show_map_button.setOnClickListener{processClick()}
+
+
 
 
 
@@ -142,7 +147,6 @@ class Review  : AppCompatActivity(){
         storeName = storeNameView.text.toString()
         address = addressView.text.toString()
         var ratingScore_string = ratingBar.rating.toString()
-
 
 
 
