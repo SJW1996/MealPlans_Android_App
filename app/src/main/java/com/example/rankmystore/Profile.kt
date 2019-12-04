@@ -200,30 +200,32 @@ class Profile : AppCompatActivity() {
 //=======
     override fun onStart() {
         super.onStart()
-        var uid = user!!.uid
+        if (user!= null) {
+            var uid = user!!.uid
 
-        var imageView = findViewById<ImageView>(R.id.profile_image)
-        var mStorageRef = FirebaseStorage.getInstance().getReference("uploads")
-                var imageRef = mStorageRef.child(user!!.uid + ".jpg")
-        Log.i("find url", "this is url " + imageRef)
-        imageRef.downloadUrl.addOnCompleteListener (object : OnCompleteListener<Uri?> {
-            override  fun onComplete(task: Task<Uri?>) {
-                if (task.isSuccessful()) {
-                    Glide.with(this@Profile)
-                        .load(task.getResult())
-                        .apply(RequestOptions.circleCropTransform())
-                        .into(imageView)
-                } else {
-                    Toast.makeText(
-                        this@Profile,
-                        task.getException()!!.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    Log.d("Firebase id", user!!.uid)
+            var imageView = findViewById<ImageView>(R.id.profile_image)
+            var mStorageRef = FirebaseStorage.getInstance().getReference("uploads")
+            var imageRef = mStorageRef.child(user!!.uid + ".jpg")
+            Log.i("find url", "this is url " + imageRef)
+            imageRef.downloadUrl.addOnCompleteListener(object : OnCompleteListener<Uri?> {
+                override fun onComplete(task: Task<Uri?>) {
+                    if (task.isSuccessful()) {
+                        Glide.with(this@Profile)
+                            .load(task.getResult())
+                            .apply(RequestOptions.circleCropTransform())
+                            .into(imageView)
+                    } else {
+                        Toast.makeText(
+                            this@Profile,
+                            task.getException()!!.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.d("Firebase id", user!!.uid)
+                    }
                 }
             }
+            )
         }
-        )
 
         }
 
