@@ -6,29 +6,30 @@
     android:fitsSystemWindows="true">
 
     <LinearLayout
-        android:layout_gravity="fill"
         android:id="@+id/ll_main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="fill"
 
         android:background="@color/cardview_dark_background"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="40dp">
         <!--        android:layout_gravity="center_horizontal"-->
+
+
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="179dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="Profile"
             android:textColor="#fff"
             android:textSize="35dp" />
 
-
         <ImageView
             android:id="@+id/profile_image"
-            android:layout_width="228dp"
-            android:layout_height="240dp"
+            android:layout_width="217dp"
+            android:layout_height="230dp"
             android:layout_marginTop="40dp"
             android:padding="50dp"
             android:src="@drawable/ic_action_profile" />
@@ -54,44 +55,45 @@
             android:textSize="25dp" />
 
 
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center_horizontal"-->
+        <!--            android:layout_marginTop="40dp"-->
+        <!--            android:padding="10dp"-->
+        <!--            android:text="History Reviews"-->
+        <!--            android:textColor="#fff"-->
+        <!--            android:textSize="15dp" />-->
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center_horizontal"-->
-<!--            android:layout_marginTop="40dp"-->
-<!--            android:padding="10dp"-->
-<!--            android:text="History Reviews"-->
-<!--            android:textColor="#fff"-->
-<!--            android:textSize="15dp" />-->
+        <!--        <HorizontalScrollView-->
+        <!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--            android:id="@+id/horizontalScroll"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:fillViewport="true"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:padding="100dp"-->
+        <!--            />-->
 
-<!--        <HorizontalScrollView-->
-<!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--            android:id="@+id/horizontalScroll"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:fillViewport="true"-->
-<!--            android:orientation="vertical"-->
-<!--            android:padding="100dp"-->
-<!--            />-->
-
-<!--        <LinearLayout-->
-<!--            android:id="@+id/horizontalScroll"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical"-->
-<!--            android:padding="100dp" />-->
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/horizontalScroll"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:padding="100dp" />-->
 
         <Button
             android:id="@+id/button_editprofile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Edit Profile" />
+
         <Button
             android:id="@+id/button_mainpage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Main page" />
+
         <Button
             android:id="@+id/button_signout"
             android:layout_width="match_parent"
