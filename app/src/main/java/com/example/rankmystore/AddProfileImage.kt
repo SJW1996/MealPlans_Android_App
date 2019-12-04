@@ -98,7 +98,7 @@ class AddProfileImage  : AppCompatActivity() {
     private fun uploadFile() {
         if (mImageUri != null) {
             val fileReference = mStorageRef!!.child(
-                System.currentTimeMillis()
+                user!!.uid
                     .toString() + "." + getFileExtension(mImageUri!!)
             )
             mUploadTask = fileReference.putFile(mImageUri!!)

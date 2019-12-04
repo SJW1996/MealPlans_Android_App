@@ -133,6 +133,8 @@ class Review  : AppCompatActivity(){
 
             var current_store = store_object(storeName, address, ratingScore, url)
 
+
+
             Log.i(TAG, "current storelist :: " + temp_stores)
             temp_stores.add(current_store)
             mDatabase.child(uid).child("storeList").setValue(temp_stores)

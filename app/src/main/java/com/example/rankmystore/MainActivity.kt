@@ -1,5 +1,6 @@
 package com.example.rankmystore
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
@@ -18,6 +19,10 @@ import org.w3c.dom.Text
 import kotlin.collections.arrayListOf
 
 import android.graphics.Color;
+
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -135,7 +140,20 @@ class MainActivity : AppCompatActivity() {
         //val tempButton = findViewById<View>(R.id.tempButton)
         //tempButton.setOnClickListener({goToTempStoreActivity()})
 
+//        setUpDate()
+
     }
+
+//    fun setUpDate(){
+//        //create a date string.
+//        val date_n =
+//            SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+//                .format(Date())
+//        //get hold of textview.
+//        val date = findViewById<View>(R.id.Date)  as TextView
+//        //set it as current date.
+//        date.text = date_n
+//    }
 
 
     fun goToAnActivity( ) {
