@@ -141,7 +141,7 @@ class Stores : AppCompatActivity(){
             var mStorageRef = FirebaseStorage.getInstance().getReference("uploads")
 
 
-            var imageRef = mStorageRef.child(user!!.uid + "Store" + ".jpg")
+            var imageRef = mStorageRef.child(user!!.uid + real_name + ".jpg")
             Log.i("find url", "this is url " + imageRef)
             imageRef.downloadUrl.addOnCompleteListener (object : OnCompleteListener<Uri?> {
                 override  fun onComplete(task: Task<Uri?>) {

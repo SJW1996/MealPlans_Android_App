@@ -44,8 +44,8 @@
         android:id="@+id/button_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-1dp"
+        android:layout_alignTop="@+id/button_choose_image"
+        android:layout_marginTop="512dp"
         android:background="#000000"
         android:text="Upload"
         android:textColor="#ffffff" />
@@ -55,9 +55,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="223dp"
         android:background="#000000"
         android:text="Confrim"
         android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/button_backMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="17dp"
+        android:background="#000000"
+        android:text="Back to Main"
+        android:textColor="#ffffff" />
+
 
 </RelativeLayout>

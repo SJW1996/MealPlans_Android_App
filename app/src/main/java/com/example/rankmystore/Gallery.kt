@@ -31,7 +31,7 @@ class Gallery  : AppCompatActivity() {
     private var mButtonChooseImage: Button? = null
     private var mButtonUpload: Button? = null
     private var mButtonConfirm: Button? = null
-
+    private var mButtonBackMain: Button? = null
 
     private var mEditTextFileName: EditText? = null
     private var mImageView: ImageView? = null
@@ -62,6 +62,8 @@ class Gallery  : AppCompatActivity() {
         mButtonUpload = findViewById(R.id.button_upload)
         mButtonConfirm = findViewById(R.id.button_confirm)
 
+        mButtonBackMain = findViewById(R.id.button_backMain)
+
         mEditTextFileName = findViewById(R.id.edit_text_file_name)
         mImageView = findViewById(R.id.image_view)
         mProgressBar = findViewById(R.id.progress_bar)
@@ -71,6 +73,8 @@ class Gallery  : AppCompatActivity() {
 
         mButtonChooseImage?.setOnClickListener(View.OnClickListener { openFileChooser() })
 
+        mButtonBackMain?.setOnClickListener{back_to_main()}
+
         mButtonConfirm?.setOnClickListener(View.OnClickListener {
             if (mUploadTask != null && mUploadTask!!.isInProgress) {
                 Toast.makeText(this@Gallery, "Confirm in progress", Toast.LENGTH_SHORT)
@@ -79,9 +83,10 @@ class Gallery  : AppCompatActivity() {
                 Confirm()
             }
         })
+//
+//
 
 
-        mButtonUpload?.setOnClickListener{go_To_Review()}
     }
 
     private fun openFileChooser() {
@@ -122,14 +127,15 @@ class Gallery  : AppCompatActivity() {
             Log.i(TAG, "ratingScore_in_gallery_uploard: "+ ratingScore)
 
             val fileReference = mStorageRef!!.child(
-                user!!.uid + "Store"
+                user!!.uid + storeName
                     .toString() + "." + getFileExtension(mImageUri!!)
             )
+
             mUploadTask = fileReference.putFile(mImageUri!!)
                 .addOnSuccessListener { taskSnapshot ->
                     val handler = Handler()
                     handler.postDelayed(Runnable { mProgressBar!!.progress = 0 }, 500)
-                    Toast.makeText(this@Gallery, "Upload successful", Toast.LENGTH_LONG)
+                    Toast.makeText(this@Gallery, "Confirm successful", Toast.LENGTH_LONG)
                         .show()
                     //var name = mEditTextFileName!!.text.toString().trim { it <= ' ' }
                     var url =  taskSnapshot.getStorage().getDownloadUrl().toString()
@@ -187,7 +193,7 @@ class Gallery  : AppCompatActivity() {
                             //print error.message
                         }
                     })
-
+//                    uploadFile(temp_stores, current_store, uid)
                     mButtonUpload?.setOnClickListener(){uploadFile(temp_stores, current_store, uid)}
 
 
@@ -220,13 +226,10 @@ class Gallery  : AppCompatActivity() {
         Log.i(TAG, "current storelist_in_gallery:: " + temp_stores)
         mDatabase.child(uid).child("storeList").setValue(temp_stores)
 
-        mButtonUpload?.setOnClickListener{go_To_Review()}
     }
 
-
-
-    fun go_To_Review() {
-        var intent = Intent(this, Review::class.java)
+    fun back_to_main(){
+        var intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 
