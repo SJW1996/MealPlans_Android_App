@@ -30,7 +30,7 @@ class store_adapter(val mCtx: Context, val layoutResId: Int, val store_list: Lis
         val textViewName = view.findViewById<TextView>(R.id.textViewName)
         val store = store_list[position]
 
-        textViewName.text = store.storename
+        textViewName.text = (position + 1).toString() + "." + "  " + store.storename
         textViewName.setOnClickListener {
             val intent = Intent(mCtx, Stores::class.java)
             //var store_name_str = ""

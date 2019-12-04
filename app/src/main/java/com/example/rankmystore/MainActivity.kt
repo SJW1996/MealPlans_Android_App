@@ -77,7 +77,9 @@ class MainActivity : AppCompatActivity() {
                                             //read_store_list.add(temp_store_name)
                                             //herolist.add(temp_store_name)
                                         }
-                                        val adapter = store_adapter(applicationContext,R.layout.store_objects,herolist)
+                                        var sortedByScore =  herolist.sortedBy { store_object -> store_object.rating_score }
+                                        var final_sortedByScore = sortedByScore.reversed()
+                                        val adapter = store_adapter(applicationContext,R.layout.store_objects,final_sortedByScore)
                                         listView.adapter = adapter
 
                                     }
