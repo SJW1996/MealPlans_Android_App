@@ -116,7 +116,7 @@ class Review  : AppCompatActivity(){
 
 
 
-//        done_Button.setOnClickListener(){finishAddPhotos(temp_stores)}
+        done_Button.setOnClickListener(){finishAddPhotos()}
         add_Photo_Button.setOnClickListener(){goToGallery()}
 
         var show_map_button = findViewById<View>(R.id.button4)
@@ -126,28 +126,8 @@ class Review  : AppCompatActivity(){
 
     }
 
-    fun finishAddPhotos(temp_stores : ArrayList<store_object>){
+    fun finishAddPhotos(){
 
-
-        if(!storeName!!.isEmpty() && !address!!.isEmpty()) {
-
-            val user = mAuth!!.currentUser
-            val uid = user!!.uid
-
-            val url = intent.getStringExtra("EXTRA")
-
-            Log.i(TAG, "here is the url" + url)
-
-            var current_store = store_object(storeName!!, address!!, ratingScore!!, url)
-
-
-
-            Log.i(TAG, "current storelist :: " + temp_stores)
-            temp_stores.add(current_store)
-            mDatabase.child(uid).child("storeList").setValue(temp_stores)
-
-
-        }
 
 
         var intent = Intent(this,MainActivity::class.java)
