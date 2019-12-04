@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,64 +11,78 @@
         android:id="@+id/button_choose_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:background="#000000"
+        android:text="Choose file"
         android:textColor="#ffffff"
-        android:text="Choose file" />
-
-    <EditText
-        android:id="@+id/edit_text_file_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_toEndOf="@+id/button_choose_image"
-        android:hint="Enter file name" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="332dp"
+        android:layout_height="0dp"
         android:layout_above="@id/progress_bar"
-        android:layout_below="@id/edit_text_file_name"
-        android:layout_marginTop="16dp" />
+
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="51dp"
+        app:layout_constraintBottom_toTopOf="@+id/progress_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_choose_image" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_upload"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="223dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/button_choose_image"
-        android:layout_marginTop="512dp"
+        android:layout_marginStart="21dp"
         android:background="#000000"
         android:text="Upload"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_confirm"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="223dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="38dp"
         android:background="#000000"
         android:text="Confrim"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        app:layout_constraintStart_toEndOf="@+id/button_upload"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
 
     <Button
         android:id="@+id/button_backMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="17dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="36dp"
         android:background="#000000"
         android:text="Back to Main"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
