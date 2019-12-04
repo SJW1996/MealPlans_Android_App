@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="28dp"
-        android:text="Store Name:"
+        android:text="Store Name:   "
+        android:textColor="@color/cardview_dark_background"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,9 +25,10 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="28dp"
         android:text=""
+        android:textColor="@color/cardview_dark_background"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:text="Images:"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -71,7 +74,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="192dp"
-        android:text="Scores:"
+        android:text="Scores:  "
+        android:textSize="15dp"
+        android:textColor="@color/cardview_dark_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
