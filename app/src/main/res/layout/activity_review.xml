@@ -12,16 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="112dp"
-        android:layout_marginBottom="81dp"
+        android:layout_marginBottom="12dp"
         android:clickable="true"
         app:backgroundTint="@color/design_default_color_primary_dark"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
         app:rippleColor="#000F0F0F"
         app:srcCompat="@android:drawable/ic_input_add" />
 
@@ -36,7 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView3"
@@ -53,28 +50,26 @@
         android:id="@+id/storeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:layout_marginEnd="112dp"
-        android:layout_marginBottom="43dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="91dp"
+        android:layout_marginBottom="27dp"
         android:ems="10"
         android:hint="Store Name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/Address"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/Address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:layout_marginEnd="112dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:hint="Address"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/storeName" />
 
@@ -82,12 +77,11 @@
         android:id="@+id/textView5"
         android:layout_width="181dp"
         android:layout_height="0dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginEnd="112dp"
-        android:layout_marginBottom="62dp"
+        android:layout_marginBottom="88dp"
         android:text="Add Store Photos"
-        app:layout_constraintBottom_toTopOf="@+id/storeName"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.626"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addStorePhotosButton" />
 
@@ -96,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="27dp"
         android:gravity="center"
         android:stepSize="0.5"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
@@ -108,26 +102,24 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginEnd="96dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="28dp"
         android:background="#000000"
         android:text="Show Map"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/ratingBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ratingBar"
+        app:layout_constraintStart_toStartOf="@+id/ratingBar"
         app:layout_constraintTop_toBottomOf="@+id/Address" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="58dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="47dp"
         android:text="Scores:"
-        app:layout_constraintBottom_toTopOf="@+id/submitButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/addStorePhotosButton"
+        app:layout_constraintStart_toStartOf="@+id/addStorePhotosButton"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
 
