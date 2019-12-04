@@ -17,9 +17,16 @@ import android.graphics.BitmapFactory
 import android.graphics.Bitmap
 import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.util.Log
 import androidx.core.net.toUri
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
 
@@ -74,9 +81,9 @@ class Stores : AppCompatActivity(){
         imageView3.setImageResource(R.drawable.test3)
         linearLayout.addView(imageView3)
 
-        val linearLayout1 = findViewById<LinearLayout>(R.id.horizontalScroll)
+//        val linearLayout1 = findViewById<LinearLayout>(R.id.horizontalScroll)
 
-        linearLayout1?.addView(horizontalScrollView)
+//        linearLayout1?.addView(horizontalScrollView)
 
 
         //val profileBoutton = findViewById<View>(R.id.add_review)
@@ -128,6 +135,32 @@ class Stores : AppCompatActivity(){
             //var strUser: String = intent.getStringExtra("value")
             store_name_text.text = "Store Name:  " + real_name
             rating_bar.rating = real_rating
+            var url = bundle!!.getString("url")
+
+            var mImageView = findViewById<ImageView>(R.id.profile_image)
+            var mStorageRef = FirebaseStorage.getInstance().getReference("uploads")
+
+
+            var imageRef = mStorageRef.child(user!!.uid + "Store" + ".jpg")
+            Log.i("find url", "this is url " + imageRef)
+            imageRef.downloadUrl.addOnCompleteListener (object : OnCompleteListener<Uri?> {
+                override  fun onComplete(task: Task<Uri?>) {
+                    if (task.isSuccessful()) {
+                        Glide.with(this@Stores)
+                            .load(task.getResult())
+                            .apply(RequestOptions.circleCropTransform())
+                            .into(mImageView)
+                    } else {
+                        Toast.makeText(
+                            this@Stores,
+                            task.getException()!!.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.d("Firebase id", user!!.uid)
+                    }
+                }
+            }
+            )
 
         }
 

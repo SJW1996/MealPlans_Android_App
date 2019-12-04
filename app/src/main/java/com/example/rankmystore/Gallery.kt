@@ -95,7 +95,7 @@ class Gallery  : AppCompatActivity() {
     private fun uploadFile() {
         if (mImageUri != null) {
             val fileReference = mStorageRef!!.child(
-                System.currentTimeMillis()
+                user!!.uid + "Store"
                     .toString() + "." + getFileExtension(mImageUri!!)
             )
             mUploadTask = fileReference.putFile(mImageUri!!)

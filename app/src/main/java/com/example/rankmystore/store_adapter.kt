@@ -37,6 +37,7 @@ class store_adapter(val mCtx: Context, val layoutResId: Int, val store_list: Lis
             intent.putExtra("key", "Kotlin")
             intent.putExtra("value", store.storename)
             intent.putExtra("store_score", store.rating_score)
+            intent.putExtra("url", store.url)
 
             mCtx.startActivity(intent)
         }
