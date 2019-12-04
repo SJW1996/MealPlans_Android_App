@@ -42,10 +42,10 @@ class AddProfileImage  : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gallery)
-
+        
         mButtonChooseImage = findViewById(R.id.button_choose_image)
         mButtonUpload = findViewById(R.id.button_upload)
-//        mEditTextFileName = findViewById(R.id.edit_text_file_name)
+        //mEditTextFileName = findViewById(R.id.edit_text_file_name)
         mImageView = findViewById(R.id.image_view)
         mProgressBar = findViewById(R.id.progress_bar)
 
