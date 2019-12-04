@@ -26,62 +26,74 @@ class Review  : AppCompatActivity(){
     lateinit var addrText : EditText
     lateinit var storenameText: EditText
 
+    var storeName : String? = ""
+    var address : String? = ""
+    var ratingScore : Float? = -1f
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_review)
 
-        addrText = findViewById<EditText>(R.id.Address)
-        storenameText = findViewById<EditText>(R.id.storeName)
+        var storeNameView = findViewById<View>(R.id.storeName) as EditText
+        var addressView = findViewById<View>(R.id.Address) as EditText
+        var ratingBar = findViewById<View>(R.id.ratingBar) as RatingBar
 
-        var address = addrText.text.toString()
-        var storename = storenameText.text.toString()
+        var storeName = storeNameView.text.toString()
+        var address = addressView.text.toString()
+        var ratingScore = ratingBar.rating.toString()
 
-
-        mAuth = FirebaseAuth.getInstance()
-        mDatabase = FirebaseDatabase.getInstance().reference
-        val user = mAuth!!.currentUser
-        val uid = user!!.uid
-        val temp_stores = arrayListOf<store_object>()
-
-        mDatabase.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                for (snapshot in dataSnapshot.children) {
-                    Log.i(TAG, "here1111")
-                    Log.i(TAG, "value of snapshot is " + snapshot)
-                    if (snapshot.key == uid) {
-                        val storelist = snapshot.child("storeList")
-                        for(ele in snapshot.children){
-                            Log.i(TAG, "here222")
-
-                            if(ele.key == "storeList"){
-                                Log.i(TAG, "value of storelist is " + ele)
-                                for(stores in ele.children){
-                                    Log.i(TAG, "here333")
-                                    Log.i(TAG, "value of store is " + stores)
-                                    val copy_store = stores.getValue(store_object::class.java)
-                                    if (copy_store != null) {
-                                        Log.i(TAG, "here4444")
-                                        Log.i(TAG, "current store is " + copy_store)
-                                        temp_stores.add(copy_store)
-                                        Log.i(TAG, "here::: " + temp_stores)
-
-                                    }
-                                }
-                            }
-                        }
-                        Log.i(TAG, "here555")
-
-                    }
-                }
-            }
+//        addrText = findViewById<EditText>(R.id.Address)
+//        storenameText = findViewById<EditText>(R.id.storeName)
+//
+//        var address = addrText.text.toString()
+//        var storename = storenameText.text.toString()
 
 
-            override fun onCancelled(error: DatabaseError) {
-                //print error.message
-            }
-        })
+//        mAuth = FirebaseAuth.getInstance()
+//        mDatabase = FirebaseDatabase.getInstance().reference
+//        val user = mAuth!!.currentUser
+//        val uid = user!!.uid
+//        val temp_stores = arrayListOf<store_object>()
+//
+//        mDatabase.addValueEventListener(object: ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//
+//                for (snapshot in dataSnapshot.children) {
+//                    Log.i(TAG, "here1111")
+//                    Log.i(TAG, "value of snapshot is " + snapshot)
+//                    if (snapshot.key == uid) {
+//                        val storelist = snapshot.child("storeList")
+//                        for(ele in snapshot.children){
+//                            Log.i(TAG, "here222")
+//
+//                            if(ele.key == "storeList"){
+//                                Log.i(TAG, "value of storelist is " + ele)
+//                                for(stores in ele.children){
+//                                    Log.i(TAG, "here333")
+//                                    Log.i(TAG, "value of store is " + stores)
+//                                    val copy_store = stores.getValue(store_object::class.java)
+//                                    if (copy_store != null) {
+//                                        Log.i(TAG, "here4444")
+//                                        Log.i(TAG, "current store is " + copy_store)
+//                                        temp_stores.add(copy_store)
+//                                        Log.i(TAG, "here::: " + temp_stores)
+//
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        Log.i(TAG, "here555")
+//
+//                    }
+//                }
+//            }
+//
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                //print error.message
+//            }
+//        })
 
 
         var add_Photo_Button = findViewById<View>(R.id.addStorePhotosButton)
@@ -103,7 +115,8 @@ class Review  : AppCompatActivity(){
 //        val rating_value = findViewById<RatingBar>(R.id.ratingBar).rating
 
 
-        done_Button.setOnClickListener(){finishAddPhotos(temp_stores)}
+
+//        done_Button.setOnClickListener(){finishAddPhotos(temp_stores)}
         add_Photo_Button.setOnClickListener(){goToGallery()}
 
         var show_map_button = findViewById<View>(R.id.button4)
@@ -114,15 +127,9 @@ class Review  : AppCompatActivity(){
     }
 
     fun finishAddPhotos(temp_stores : ArrayList<store_object>){
-        var storeNameView = findViewById<View>(R.id.storeName) as EditText
-        var addressView = findViewById<View>(R.id.Address) as EditText
-        var ratingBar = findViewById<View>(R.id.ratingBar) as RatingBar
 
-        var storeName = storeNameView.text.toString()
-        var address = addressView.text.toString()
-        var ratingScore = ratingBar.rating
 
-        if(!storeName.isEmpty() && !address.isEmpty()) {
+        if(!storeName!!.isEmpty() && !address!!.isEmpty()) {
 
             val user = mAuth!!.currentUser
             val uid = user!!.uid
@@ -131,14 +138,13 @@ class Review  : AppCompatActivity(){
 
             Log.i(TAG, "here is the url" + url)
 
-            var current_store = store_object(storeName, address, ratingScore, url)
+            var current_store = store_object(storeName!!, address!!, ratingScore!!, url)
 
 
 
             Log.i(TAG, "current storelist :: " + temp_stores)
             temp_stores.add(current_store)
             mDatabase.child(uid).child("storeList").setValue(temp_stores)
-
 
 
         }
@@ -149,7 +155,25 @@ class Review  : AppCompatActivity(){
     }
 
     fun goToGallery(){
+        var storeNameView = findViewById<View>(R.id.storeName) as EditText
+        var addressView = findViewById<View>(R.id.Address) as EditText
+        var ratingBar = findViewById<View>(R.id.ratingBar) as RatingBar
+
+        storeName = storeNameView.text.toString()
+        address = addressView.text.toString()
+        var ratingScore_string = ratingBar.rating.toString()
+
+
+
+
+        Log.i(TAG, "storename: "+ storeName)
+        Log.i(TAG, "address: "+ address)
+        Log.i(TAG, "ratingScore: "+ ratingScore_string)
+
         var intent = Intent(this,Gallery::class.java)
+        intent.putExtra("storeName", storeName)
+        intent.putExtra("address", address)
+        intent.putExtra("ratingScore", ratingScore_string)
         startActivity(intent)
 
     }

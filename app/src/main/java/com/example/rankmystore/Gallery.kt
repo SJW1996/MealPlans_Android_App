@@ -6,13 +6,13 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Handler
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.webkit.MimeTypeMap
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
@@ -20,11 +20,18 @@ import com.squareup.picasso.Picasso
 
 
 class Gallery  : AppCompatActivity() {
+    companion object {
+        const val TAG = "Gallery"
+    }
     private val PICK_IMAGE_REQUEST = 1
 
+    private var mAuth: FirebaseAuth? = null
+    lateinit var mDatabase : DatabaseReference
 
     private var mButtonChooseImage: Button? = null
     private var mButtonUpload: Button? = null
+    private var mButtonConfirm: Button? = null
+
 
     private var mEditTextFileName: EditText? = null
     private var mImageView: ImageView? = null
@@ -38,13 +45,22 @@ class Gallery  : AppCompatActivity() {
 
     var user = FirebaseAuth.getInstance().currentUser
 
+    var storeName : String? = ""
+    var address : String? = ""
+    var ratingScore : String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gallery)
 
+        storeName = intent.getStringExtra("storeName")
+        address = intent.getStringExtra("address")
+        ratingScore = intent.getStringExtra("ratingScore")
+
+
         mButtonChooseImage = findViewById(R.id.button_choose_image)
         mButtonUpload = findViewById(R.id.button_upload)
+        mButtonConfirm = findViewById(R.id.button_confirm)
 
         mEditTextFileName = findViewById(R.id.edit_text_file_name)
         mImageView = findViewById(R.id.image_view)
@@ -55,14 +71,17 @@ class Gallery  : AppCompatActivity() {
 
         mButtonChooseImage?.setOnClickListener(View.OnClickListener { openFileChooser() })
 
-        mButtonUpload?.setOnClickListener(View.OnClickListener {
+        mButtonConfirm?.setOnClickListener(View.OnClickListener {
             if (mUploadTask != null && mUploadTask!!.isInProgress) {
-                Toast.makeText(this@Gallery, "Upload in progress", Toast.LENGTH_SHORT)
+                Toast.makeText(this@Gallery, "Confirm in progress", Toast.LENGTH_SHORT)
                     .show()
             } else {
-                uploadFile()
+                Confirm()
             }
         })
+
+
+        mButtonUpload?.setOnClickListener{go_To_Review()}
     }
 
     private fun openFileChooser() {
@@ -92,8 +111,16 @@ class Gallery  : AppCompatActivity() {
         return mime.getExtensionFromMimeType(cR.getType(uri))
     }
 
-    private fun uploadFile() {
+
+
+
+    private fun Confirm() {
         if (mImageUri != null) {
+
+            Log.i(TAG, "storename_in_gallery_uploard: "+ storeName)
+            Log.i(TAG, "address_in_gallery_uploard: "+ address)
+            Log.i(TAG, "ratingScore_in_gallery_uploard: "+ ratingScore)
+
             val fileReference = mStorageRef!!.child(
                 user!!.uid + "Store"
                     .toString() + "." + getFileExtension(mImageUri!!)
@@ -107,12 +134,61 @@ class Gallery  : AppCompatActivity() {
                     //var name = mEditTextFileName!!.text.toString().trim { it <= ' ' }
                     var url =  taskSnapshot.getStorage().getDownloadUrl().toString()
 
-                    var uid = user!!.uid
+//                    var uid = user!!.uid
 //                    mDatabaseRef?.child(uid)?.child("Profile_image")?.setValue(url)
 //
-                    val intent = Intent(this, Review::class.java)
-                    intent.putExtra("EXTRA", url)
-                    startActivity(intent)
+//                    val intent = Intent(this, Review::class.java)
+//                    intent.putExtra("EXTRA", url)
+//                    startActivity(intent)
+
+
+                    var current_store = store_object(storeName!!, address!!, ratingScore!!.toFloat(), url)
+
+                    mAuth = FirebaseAuth.getInstance()
+                    mDatabase = FirebaseDatabase.getInstance().reference
+                    val user = mAuth!!.currentUser
+                    val uid = user!!.uid
+                    val temp_stores = arrayListOf<store_object>()
+
+                    mDatabase.addValueEventListener(object: ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                            for (snapshot in dataSnapshot.children) {
+                                Log.i(Review.TAG, "here1111")
+                                Log.i(Review.TAG, "value of snapshot is " + snapshot)
+                                if (snapshot.key == uid) {
+                                    val storelist = snapshot.child("storeList")
+                                    for(ele in snapshot.children){
+                                        Log.i(Review.TAG, "here222")
+
+                                        if(ele.key == "storeList"){
+                                            Log.i(Review.TAG, "value of storelist is " + ele)
+                                            for(stores in ele.children){
+                                                Log.i(Review.TAG, "here333")
+                                                Log.i(Review.TAG, "value of store is " + stores)
+                                                val copy_store = stores.getValue(store_object::class.java)
+                                                if (copy_store != null) {
+                                                    Log.i(Review.TAG, "here4444")
+                                                    Log.i(Review.TAG, "current store is " + copy_store)
+                                                    temp_stores.add(copy_store)
+                                                    Log.i(Review.TAG, "here::: " + temp_stores)
+
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+
+
+                        override fun onCancelled(error: DatabaseError) {
+                            //print error.message
+                        }
+                    })
+
+                    mButtonUpload?.setOnClickListener(){uploadFile(temp_stores, current_store, uid)}
 
 
 
@@ -136,6 +212,18 @@ class Gallery  : AppCompatActivity() {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show()
         }
     }
+
+    fun uploadFile(temp_stores : ArrayList<store_object>, current_store: store_object, uid:String){
+
+        Log.i(TAG, "temp storelist_in_gallery:: " + temp_stores)
+        temp_stores.add(current_store)
+        Log.i(TAG, "current storelist_in_gallery:: " + temp_stores)
+        mDatabase.child(uid).child("storeList").setValue(temp_stores)
+
+        mButtonUpload?.setOnClickListener{go_To_Review()}
+    }
+
+
 
     fun go_To_Review() {
         var intent = Intent(this, Review::class.java)
