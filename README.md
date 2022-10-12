@@ -1,1 +1,1 @@
-# CMSC436FinalProject_new
+# Demo for MealPlans Android App
